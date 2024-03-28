@@ -1,0 +1,14 @@
+{
+    "name": "adrien/pkg",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "adrien"
+        }
+    ],
+    "require": {}
+}
