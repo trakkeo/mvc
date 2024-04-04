@@ -1,9 +1,11 @@
-
 <?php
+namespace App\Config;
+
 use PDO;
 use PDOException;
 
-class Database {
+class Database 
+{
     private $host = 'localhost';
     private $db_name = 'rdvproject';
     private $username = 'root';

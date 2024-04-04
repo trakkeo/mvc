@@ -1,17 +1,19 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+
 class HomeController
 {
     public function index()
     {
-        //$users = $this->
-        include '../app/views/home.php';
-    }
+        //call function getallusers from usermodel
+        $userModel = new UserModel();
+        $users = $userModel->getAllUsers();
 
-    public function about()
-    {
-        include '../app/views/about.php';
-    }
+
+       include '../app/views/home.php';
+    }    
+    
   
 }
