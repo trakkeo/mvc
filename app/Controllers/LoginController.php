@@ -1,6 +1,5 @@
 <?php
 namespace App\Controllers;
-
 use App\Models\LoginModel;
 
 class LoginController
@@ -15,10 +14,9 @@ class LoginController
         $loginModel = new LoginModel();
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
-        
+        session_start();
         if ($loginModel->authenticate($email, $password)) {
-            // Start session
-            session_start();
+
             //logg user in
             $_SESSION['LOGGED_USER'] = [
                 'email' => $email,
@@ -29,12 +27,11 @@ class LoginController
             header('Location: /');
             exit;
             } else {
-                
+          
+                $_SESSION['LOGIN_ERROR_MESSAGE'] = 'Les informations envoyées ne permettent pas de vous identifier. Veuillez réessayer.';
                 header('Location: /login');
-                $_SESSION['LOGIN_ERROR_MESSAGE'] = sprintf(
-                    'Les informations envoyées ne permettent pas de vous identifier. Veuillez réessayer.'
-                );
                 exit;
+                    
             }
 
         }

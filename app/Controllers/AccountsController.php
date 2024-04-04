@@ -13,22 +13,21 @@ class AccountsController
 
     public function getAllUsers()
     {
-        include '../app/views/admin/manageusers.php';   
-        
+       
         //call function getallusers from usermodel
         $userModel = new UserModel();
         $users = $userModel->getAllUsers();
+        require '../app/views/admin/manageusers.php';   
     }    
     
     public function index()
     {        
-        // Code pour afficher la page d'accueil du compte utilisateur
-        include '../app/views/myaccount.php';
 
         // Créer une instance du modèle de l'utilisateur
         $userModel = new UserModel();
         // Récupérer les informations de l'utilisateur à partir de la session
         $user = $userModel->getUserByEmail($_SESSION['email']);
+        include '../app/views/myaccount.php';
 
     }
 

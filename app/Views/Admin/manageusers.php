@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Views\Admin\manageusers;
-use App\Models\UserModel;
+
 
 
 ?>
@@ -22,48 +22,40 @@ use App\Models\UserModel;
         <p>Consultation, création et modification des comptes utilisateurs</p>
 
         <?php
-        // Get the users from the database
-        $userModel = new UserModel();
-        $users = $userModel->getAllUsers();
-
-        // if the user is logged in display all users in a table
-        if (isset($_SESSION['LOGGED_USER'])) {
-            echo '<table class="table table-striped">';
-            echo '<thead>';
-            echo '<tr>';
-            echo '<th scope="col">Id</th>';
-            echo '<th scope="col">Firstname</th>';
-            echo '<th scope="col">Lastname</th>';
-            echo '<th scope="col">Email</th>';
-            echo '<th scope="col">Phone</th>';
-            echo '<th scope="col">Role</th>';
-            echo '<th scope="col">Actions</th>'; // Add a new column for the action buttons
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            foreach ($users as $user) {
-                echo '<tr>';
-                echo '<td>' . $user['id'] . '</td>';
-                echo '<td>' . $user['firstName'] . '</td>';
-                echo '<td>' . $user['lastName'] . '</td>';
-                echo '<td>' . $user['email'] . '</td>';
-                echo '<td>' . $user['phone'] . '</td>';
-                echo '<td>' . $user['role'] . '</td>';
-                echo '<td>';
-                echo '<a href="/update_myaccount?email=' . urlencode($user['email']) . '" class="btn btn-primary">Modifier</a>'; // Add the "Modifier" button
-                echo ' ';
-                echo '<button class="btn btn-danger">Supprimer</button>'; // Add the "Supprimer" button
-                echo '</td>';
-                echo '</tr>';
-            }
-            echo '</tbody>';
-            echo '</table>';
-        } else {
-            echo '<p>Vous devez être connecté pour voir cette liste</p>';
-        }
-
-
-        ?>
+    
+        if (isset($_SESSION['LOGGED_USER'])): ?>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Actions</th> <!-- Add a new column for the action buttons -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($user['id']) ?></td>
+                            <td><?= htmlspecialchars($user['firstName']) ?></td>
+                            <td><?= htmlspecialchars($user['lastName']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['phone']) ?></td>
+                            <td><?= htmlspecialchars($user['role']) ?></td>
+                            <td>
+                                <a href="/update_myaccount?email=<?= urlencode($user['email']) ?>" class="btn btn-primary">Modifier</a>
+                                <button class="btn btn-danger">Supprimer</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>Vous devez être connecté pour voir cette liste</p>
+        <?php endif; ?>
 
     </div>
     <div>
