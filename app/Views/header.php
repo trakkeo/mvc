@@ -20,7 +20,7 @@
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Gestion des utilisateurs</a>
+                            <a class="nav-link" href="/manage_users">Gestion des utilisateurs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/about">A propos</a>

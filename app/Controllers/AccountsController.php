@@ -2,7 +2,7 @@
 namespace App\Controllers;
 Use App\Models\UserModel;
 
-class MyAccountController
+class AccountsController
 {
     private $userModel;
 
@@ -11,6 +11,15 @@ class MyAccountController
         $this->userModel = new UserModel();
     }
 
+    public function getAllUsers()
+    {
+        include '../app/views/admin/manageusers.php';   
+        
+        //call function getallusers from usermodel
+        $userModel = new UserModel();
+        $users = $userModel->getAllUsers();
+    }    
+    
     public function index()
     {        
         // Code pour afficher la page d'accueil du compte utilisateur
