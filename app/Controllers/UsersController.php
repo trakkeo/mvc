@@ -42,6 +42,11 @@ class UsersController
         $user = $userModel->getUserByEmail($_SESSION['email']);
     }
 
+    public function indexAdmin()
+    {
+        include '../app/views/Admin/index.php';
+    }
+
     public function updateMyAccount()
     {
         // Créer une instance du modèle de l'utilisateur

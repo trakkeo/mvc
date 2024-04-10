@@ -53,7 +53,7 @@ class ServicesModel
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':status', $data['status']);
         $stmt->execute();
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Admin\manageusers;
+namespace App\Views\Admin;
 use App\Models\UserModel;
 
 
@@ -34,6 +34,7 @@ use App\Models\UserModel;
             if ($isAdmin) {
                 // display message if user is an admin
                 echo '<p>Vous êtes connecté en tant qu\'administrateur</p>';
+                
             } else {
                 // display message if user is not an admin
                 echo '<p>Vous n\'êtes pas autorisé à voir cette liste</p>';

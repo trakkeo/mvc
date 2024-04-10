@@ -27,11 +27,14 @@ if ($path == '/') {
 } elseif($path == '/myaccount') {
     $controller = new UsersController();
     $controller->index();
+} elseif($path == '/admin') {
+    $controller = new UsersController();
+    $controller->indexAdmin();
 } elseif($path == '/update_myaccount') {
     $controller = new UsersController();
     $controller->updateMyAccount();
 } elseif($path == '/update_user_account') {
-    $controller = new UsersController();
+    $controller = new UsersController($_GET['id']);
     $controller->updateUser();
 } elseif($path == '/change_password') {
     $controller = new UsersController();
@@ -64,6 +67,9 @@ if ($path == '/') {
 } elseif($path == '/list_services') {
     $controller = new ServicesController();
     $controller->list();
+} elseif($path == '/update_services') {
+    $controller = new ServicesController();
+    $controller->updateService($_GET['id']);
 } else{
      // Gérer les autres chemins ou afficher une erreur 404
      echo "404 Not Found";
