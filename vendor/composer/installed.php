@@ -3,7 +3,7 @@
         'name' => 'adrien/pkg',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b4ed33fd04b72a84d1d8f5784034d8e61697f0f5',
+        'reference' => 'a16ec25b53901a92280b074fdc8518e3b1ed0a78',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'adrien/pkg' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b4ed33fd04b72a84d1d8f5784034d8e61697f0f5',
+            'reference' => 'a16ec25b53901a92280b074fdc8518e3b1ed0a78',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

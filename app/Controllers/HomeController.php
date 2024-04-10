@@ -3,6 +3,8 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
+session_start();
+
 class HomeController
 {
     public function index()

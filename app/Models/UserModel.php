@@ -1,6 +1,5 @@
 <?php 
 namespace App\Models;
-
 use PDO;
 use App\Config\Database;
 
@@ -52,6 +51,20 @@ class UserModel
         $stmt->execute();
     }
 
+        // updateMyAccount
+        public function updateMyAccount($id, $userData)
+        {
+            $query = 'UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone WHERE id = :id';
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $id); 
+            $stmt->bindParam(':firstName', $userData['firstName']);
+            $stmt->bindParam(':lastName', $userData['lastName']);
+            $stmt->bindParam(':email', $userData['email']);
+            $stmt->bindParam(':phone', $userData['phone']);
+    
+            $stmt->execute();
+        }
+
     // delete user
     public function deleteUser($id) {
         $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
@@ -89,6 +102,16 @@ class UserModel
         return $stmt->fetch();
     }
 
+    // looged user role is admin ?
+public function isAdmin($email) {
+    $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email AND role = :role';
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindValue(':role', 'admin');
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
     // login form validation
     public function validateLoginForm($postData) {
         $postData = $_POST;
@@ -115,17 +138,42 @@ class UserModel
     }
     return $errors;
     }
-    // change password with new hashed password
-    function changePassword($id, $passwordData) {
-        $query = 'UPDATE ' . $this->table . ' SET password = :password WHERE id = :id';
+
+public function ChangePassword() {
+    $postData = $_POST;
+    $errors = [];
+
+    if (isset($postData['current_password']) && isset($postData['new_password']) && isset($postData['confirm_password'])) {
+        if ($postData['new_password'] !== $postData['confirm_password']) {
+            $errors['confirm_password'] = 'Les mots de passe ne correspondent pas.';
+            return $errors;
+        }
+
+        // check if current password is correct
+        $user = $this->getUserByEmail($_SESSION['email']);
+        if (!password_verify($postData['current_password'], $user['password'])) {
+            $errors['current_password'] = 'Le mot de passe actuel est incorrect.';
+            return $errors;
+        }
+
+        // update password
+        $newPassword = password_hash($postData['new_password'], PASSWORD_DEFAULT);
+        $query = 'UPDATE users SET password = :password WHERE email = :email';
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $passwordHash = password_hash($passwordData['newPassword'], PASSWORD_DEFAULT);
-        $stmt->bindParam(':password', $passwordHash);
+        $stmt->bindParam(':password', $newPassword);
+        $stmt->bindParam(':email', $_SESSION['email']);
         $stmt->execute();
+
+        // success message
+        $_SESSION['CHANGE_PASSWORD_SUCCESS_MESSAGE'] = 'Mot de passe changé avec succès.';
+        header('Location: /myaccount');
+        exit;
+    } else {
+        $errors['current_password'] = 'Veuillez remplir les champs.';
+        return $errors;
     }
 }
 
-
+}
 
 ?>

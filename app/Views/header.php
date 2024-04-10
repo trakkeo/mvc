@@ -1,3 +1,8 @@
+<?php
+namespace App\Views;
+use App\Models\UserModel;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +12,6 @@
 </head>
 <body>
     <header>
-    <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">Cabinet Medical</a>
@@ -20,14 +24,24 @@
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/manage_users">Gestion des utilisateurs</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/about">A propos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        <?php
+                        // call isAdmin method from UserModel to check if user is an admin
+                        if (isset($_SESSION['LOGGED_USER'])) {
+                            $userModel = new UserModel();
+                            $isAdmin = $userModel->isAdmin($_SESSION['LOGGED_USER']['email']);
+                            if ($isAdmin) {
+                            echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="/manage_users">Gestion des utilisateurs</a>';
+                            echo '</li>';
+                        } else {
+                        }
+                    }
+                        ?>
                         <?php
                         if (isset($_SESSION['LOGGED_USER'])) {
                             echo '<li class="nav-item">';

@@ -1,5 +1,5 @@
 <?php
-namespace App\Views\myaccount;
+namespace App\Views\Users;
 use App\Models\UserModel;
 
 
@@ -11,7 +11,7 @@ use App\Models\UserModel;
 </head>
 <body>
     <!-- intégrer le header -->
-    <?php include 'header.php'; ?>
+    <?php include '../app/Views/header.php'; ?>
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
@@ -62,7 +62,7 @@ endif;
 <footer class="footer">
 <?php
 // insérer le footer 
-require_once 'footer.php'; 
+require_once '../app/Views/footer.php'; 
 ?>
 </footer>
 </div>

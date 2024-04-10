@@ -36,15 +36,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
-
-            <!-- Si utilisateur/trice bien connectée on affiche un message de succès -->
-        <?php else : ?>
-            <div id="success-message" class="alert alert-success" role="alert">
-                Bonjour <?php echo $_SESSION['LOGGED_USER']['email']; ?> et bienvenue sur le site !
-            </div>
-        <?php endif; ?>
-
+            <?php endif; ?>
     </div>
     </div>
+
     <!-- insérer le footer -->
     <?php include 'footer.php'; ?>

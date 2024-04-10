@@ -1,20 +1,16 @@
 <?php
 namespace App\Views\changepassword;
 
-use App\Models\UserModel;
 
 
-require_once 'header.php';
+require_once '../app/Views/header.php';
 
-$userModel = new UserModel();
 
 if (!isset($_SESSION['LOGGED_USER'])) {
     // Rediriger l'utilisateur vers la page de connexion s'il n'est pas connecté
-    header('Location: login.php');
+    header('Location: /login.php');
     exit;
 }
-
-$user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
 
 ?>
 
@@ -29,24 +25,24 @@ $user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
 
         <?php
-        // appeller la méthode changePassword du contrôleur MyAccountController
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $currentPassword = $_POST['current_password'];
-            $newPassword = $_POST['new_password'];
-            $confirmPassword = $_POST['confirm_password'];
+        // // appeller la méthode changePassword du contrôleur MyAccountController
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     $currentPassword = $_POST['current_password'];
+        //     $newPassword = $_POST['new_password'];
+        //     $confirmPassword = $_POST['confirm_password'];
 
-            $isValid = true;
+        //     $isValid = true;
 
-            if ($newPassword !== $confirmPassword) {
-                echo '<p class="alert alert-danger">Les mots de passe ne correspondent pas!</p>';
-                $isValid = false;
-            }
+        //     if ($newPassword !== $confirmPassword) {
+        //         echo '<p class="alert alert-danger">Les mots de passe ne correspondent pas!</p>';
+        //         $isValid = false;
+        //     }
 
-            if ($isValid) {
-                $userModel->changePassword($user['id'], $currentPassword, $newPassword);
-                echo '<p class="alert alert-success">Mot de passe changé avec succès!</p>';
-            }
-        }
+        //     if ($isValid) {
+        //         $userModel->changePassword($user['id'], $currentPassword, $newPassword);
+        //         echo '<p class="alert alert-success">Mot de passe changé avec succès!</p>';
+        //     }
+        // }
         ?>
 
         <form method="POST" action="/change_password">
@@ -70,7 +66,7 @@ $user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
     </div>
 
     <footer class="footer">
-        <?php require_once 'footer.php'; ?>
+        <?php require_once '../app/Views/footer.php'; ?>
     </footer>
 </body>
 </html>

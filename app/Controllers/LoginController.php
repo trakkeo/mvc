@@ -2,6 +2,8 @@
 namespace App\Controllers;
 use App\Models\LoginModel;
 
+session_start();
+
 class LoginController
 {
     public function login()
@@ -14,7 +16,7 @@ class LoginController
         $loginModel = new LoginModel();
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
-        session_start();
+        //session_start();
         if ($loginModel->authenticate($email, $password)) {
 
             //logg user in
@@ -24,6 +26,8 @@ class LoginController
             // Set session variables
             $_SESSION['email'] = $email;
             // Redirect to home page
+            // afficher un message de succès
+            $_SESSION['LOGIN_SUCCESS_MESSAGE'] = 'Vous êtes maintenant connecté.';
             header('Location: /');
             exit;
             } else {

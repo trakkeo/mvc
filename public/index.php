@@ -1,13 +1,17 @@
 <?php
+namespace App\index;
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AboutController;
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
-use App\Controllers\AccountsController;
+use App\Controllers\UsersController;
+use App\Controllers\AppointmentsController;
+use App\Controllers\ServicesController;
 
 // Un routage très basique
-$path = $_SERVER['REQUEST_URI'];
+$url = $_SERVER['REQUEST_URI'];
+$path = parse_url($url, PHP_URL_PATH);
 if ($path == '/') {
     $controller = new HomeController();
     $controller->index();
@@ -21,13 +25,16 @@ if ($path == '/') {
     $controller = new LoginController();
     $controller->login();
 } elseif($path == '/myaccount') {
-    $controller = new AccountsController();
+    $controller = new UsersController();
     $controller->index();
 } elseif($path == '/update_myaccount') {
-    $controller = new AccountsController();
+    $controller = new UsersController();
     $controller->updateMyAccount();
+} elseif($path == '/update_user_account') {
+    $controller = new UsersController();
+    $controller->updateUser();
 } elseif($path == '/change_password') {
-    $controller = new AccountsController();
+    $controller = new UsersController();
     $controller->changePassword();
 } elseif($path == '/submit_login') {
     $controller = new LoginController();
@@ -37,8 +44,26 @@ if ($path == '/') {
     $controller->logout();
     //Administration
 } elseif($path == '/manage_users') {
-    $controller = new AccountsController();
+    $controller = new UsersController();
     $controller->getAllUsers();
+} elseif($path == '/get_appointments') {
+    $controller = new AppointmentsController();
+    $controller->getAppointments();
+} elseif($path == '/create_appointment') {
+    $controller = new AppointmentsController();
+    $controller->create();
+// } elseif($path == '/update_appointment') {
+//     $controller = new AppointmentsController();
+//     $controller->update();
+// } elseif($path == '/delete_appointment') {
+//     $controller = new AppointmentsController();
+//     $controller->delete();
+// } elseif($path == '/show_appointment') {
+//     $controller = new AppointmentsController();
+//     $controller->show();
+} elseif($path == '/list_services') {
+    $controller = new ServicesController();
+    $controller->list();
 } else{
      // Gérer les autres chemins ou afficher une erreur 404
      echo "404 Not Found";

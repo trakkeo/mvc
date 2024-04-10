@@ -1,6 +1,5 @@
 <?php
-namespace App\Views\updatemyaccount;
-use App\Models\UserModel;
+namespace App\Views\Users;
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +8,7 @@ use App\Models\UserModel;
     <title>Modifier mon compte</title>
 </head>
 <body>
-    <?php include 'header.php'; 
-    $userModel = new UserModel();
-    $user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
-    ?>
+    <?php include '../app/Views/header.php'; ?>
     <div class="container">
     <h1>Modifier mon compte</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
@@ -42,6 +38,6 @@ use App\Models\UserModel;
         <input type="submit" class="btn btn-primary" value="Enregistrer les modifications">
         </form>
 
-    <?php include 'footer.php'; ?>
+    <?php include '../app/Views/footer.php'; ?>
 </body>
 </html>

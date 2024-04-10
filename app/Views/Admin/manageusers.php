@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Views\Admin\manageusers;
+use App\Models\UserModel;
 
 
 
@@ -24,6 +25,23 @@ namespace App\Views\Admin\manageusers;
         <?php
     
         if (isset($_SESSION['LOGGED_USER'])): ?>
+
+            <a href="/create_user" class="btn btn-primary mb-2" style="margin-right: 5px;">Créer un nouvel utilisateur</a>
+
+            <?php
+            $userModel = new UserModel();
+            $isAdmin = $userModel->isAdmin($_SESSION['LOGGED_USER']['email']);
+            if ($isAdmin) {
+                // display message if user is an admin
+                echo '<p>Vous êtes connecté en tant qu\'administrateur</p>';
+            } else {
+                // display message if user is not an admin
+                echo '<p>Vous n\'êtes pas autorisé à voir cette liste</p>';
+            }
+            ?>
+
+            <h2>Liste des utilisateurs</h2>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -46,8 +64,19 @@ namespace App\Views\Admin\manageusers;
                             <td><?= htmlspecialchars($user['phone']) ?></td>
                             <td><?= htmlspecialchars($user['role']) ?></td>
                             <td>
-                                <a href="/update_myaccount?email=<?= urlencode($user['email']) ?>" class="btn btn-primary">Modifier</a>
-                                <button class="btn btn-danger">Supprimer</button>
+                                <a href="/update_user_account?id=<?= urlencode($user['id']) ?>" class="btn btn-primary">Modifier</a>
+                                <button class="btn btn-danger" onclick="deleteUserAdmin()">Supprimer</button>
+                                <script>
+                                    function deleteUserAdmin() {
+                                        // Appeler la fonction deleteUserAdmin du contrôleur AccountsController
+                                        // Utilisez ici la logique appropriée pour appeler la fonction du contrôleur
+                                        // utiliser AJAX pour appeler la fonction deleteUserAdmin du contrôleur
+                                        // code ajax pour appeler la fonction deleteUserAdmin du contrôleur
+
+
+
+                                    }
+                                </script>
                             </td>
                         </tr>
                     <?php endforeach; ?>
