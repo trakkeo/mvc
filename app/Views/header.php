@@ -12,6 +12,10 @@ use App\Models\UserModel;
     <title>Cabinet Medical</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="C:\xampp\htdocs\mvc\public\js\js.js"></script>
+    <script src="https://kit.fontawesome.com/d91517610f.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
@@ -60,7 +64,7 @@ use App\Models\UserModel;
                         <?php
                         if (isset($_SESSION['LOGGED_USER'])) {
                             echo '<li class="nav-item">';
-                            echo '<a class="nav-link" href="/logout">Déconnexion</a>';
+                            echo '<a class="nav-link" href="/logout"><i class="fa-regular fa-user"></i> Déconnexion</a>';
                             echo '</li>';
                         } else {
                             echo '<li class="nav-item">';
