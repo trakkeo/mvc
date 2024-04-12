@@ -68,5 +68,6 @@ class AppointmentsController
         // Rediriger vers la liste des rendez-vous
         header('Location: /appointments');
     }
+
 }
 ?>

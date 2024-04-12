@@ -54,15 +54,18 @@ class UserModel
         // updateMyAccount
         public function updateMyAccount($id, $userData)
         {
-            $query = 'UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone WHERE id = :id';
+
+            $query = 'UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone, role = :role WHERE id = :id';
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $id); 
             $stmt->bindParam(':firstName', $userData['firstName']);
             $stmt->bindParam(':lastName', $userData['lastName']);
             $stmt->bindParam(':email', $userData['email']);
             $stmt->bindParam(':phone', $userData['phone']);
-    
+            $stmt->bindParam(':role', $userData['role']);
+
             $stmt->execute();
+
         }
 
     // delete user

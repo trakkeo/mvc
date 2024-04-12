@@ -44,6 +44,8 @@ namespace App\Views\Services;
             echo '</tr>';
         }
         ?>
+        </tbody>
+        </table>
     </div>
     <footer class="footer">
         <?php include '../app/Views/footer.php'; ?>

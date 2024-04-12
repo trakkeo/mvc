@@ -47,15 +47,14 @@ class UsersController
         include '../app/views/Admin/index.php';
     }
 
+    
     public function updateMyAccount()
     {
         // Créer une instance du modèle de l'utilisateur
         $userModel = new UserModel();
         // Récupérer les informations de l'utilisateur à partir de la session
         $user = $userModel->getUserByEmail($_SESSION['email']);
-        // Code pour mettre à jour le compte utilisateur
-        include '../app/views/Users/updatemyaccount.php';
-
+    
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Afficher le formulaire de mise à jour du compte utilisateur
             $userData = [
@@ -64,13 +63,17 @@ class UsersController
                 'email' => $_POST['email'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
             ];
-
+    
             $this->userModel->updateMyAccount($user['id'], $userData);
             // Rediriger vers /myaccount
             header('Location: /myaccount');
             exit;
         }
+    
+        // Code pour mettre à jour le compte utilisateur
+        include '../app/views/Users/updatemyaccount.php';
     }
+    
 
 
     public function changePassword()
@@ -102,11 +105,12 @@ class UsersController
     public function updateUser()
     {
         // Récupérer l'utilisateur à partir de l'URL
+
         if (isset($_GET['id'])) {
             $user = $this->userModel->getUserById($_GET['id']);
         } else {
             //afficher une erreur
-            echo 'Utilisateur non trouvé sss';
+            echo 'Utilisateur non trouvé';
 
         }
     
@@ -114,7 +118,7 @@ class UsersController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Assurer la validation et l'assainissement des données ici
             $user = $this->userModel->getUserById($_GET['id']);
-            
+
             $userData = [
                 'id' => $_POST['id'] ?? '',
                 'firstName' => $_POST['firstName'] ?? '',
@@ -123,15 +127,14 @@ class UsersController
                 'phone' => $_POST['phone'] ?? '',
                 'role' => $_POST['role'] ?? '',
             ];
-    
-            if ($this->userModel->updateMyAccount($user['id'], $userData)) {
+
+
+            $this->userModel->updateMyAccount($user['id'], $userData);
+
                 // Rediriger vers /manage_users si la mise à jour est réussie
                 header('Location: /manage_users');
                 exit;
-            } else {
-                // Gérer l'erreur de mise à jour ici
-                echo 'Erreur lors de la mise à jour de l\'utilisateur';
-            }
+            
         }
     
         // Inclure la vue seulement si la requête n'est pas POST ou si la mise à jour échoue

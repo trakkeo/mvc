@@ -53,6 +53,7 @@ use App\Models\UserModel;
                     echo '<a href="/delete_appointment?id=' . $appointment['id'] . '" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer</a>';
                     echo '</td>';
                     echo '</tr>';
+
                 }
             } else {
                 // display message if user is not an admin
@@ -60,7 +61,11 @@ use App\Models\UserModel;
             }
         endif;
         ?>
+        </tbody>
+        </table>
     </div>
+    </div>
+</body>
     <footer class="footer">
         <?php include '../app/Views/footer.php'; ?>
     </footer>

@@ -15,9 +15,9 @@
     <div class="container">
         
         <!-- conteneur bootstrap 50/50 -->
-        <div class="row" style="margin-top: 4em;">
+        <div class="row" style="margin-top: 1em;">
             <div class="col-md-6">
-                <h1>Cabinet Médical du Dr Dupont</h1>
+                <h2>Cabinet Médical du Dr Dupont</h2>
                 <p><br />Bienvenue sur le site du cabinet médical du Dr Dupont. Vous pouvez prendre rendez-vous en ligne, consulter vos rendez-vous, consulter les services proposés par le cabinet et mettre à jour vos informations personnelles.</p>
                 <?php
                 //display the list of services in a bootstrap table for the collumns name description status
@@ -48,6 +48,7 @@
 
 
         </div>
+    </div>
 
         <footer class="footer">
             <?php
