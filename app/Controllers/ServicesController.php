@@ -15,7 +15,6 @@ class ServicesController
 
     public function list()
     {
-        // Code pour afficher tous les services
         $servicesModel = new ServicesModel();
         $services = $servicesModel->getAllServices();
         include '../app/views/services/list.php';
@@ -42,22 +41,21 @@ class ServicesController
         $serviceId = $_GET['id'];
         // récupérer les informations du service à mettre à jour
         $service = $this->servicesModel->getService($serviceId);
-        // afficher le formulaire de mise à jour du service
-        include '../app/views/services/update.php';
+
         // si le formulaire est soumis, mettre à jour le service
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'name' => $_POST['name'],
                 'description' => $_POST['description'],
-                'price' => $_POST['price'],
-                'duration' => $_POST['duration'],
+                'status' => $_POST['status'],
                 'id' => $serviceId
             ];
             $this->servicesModel->updateService($data['id'], $data);
             // rediriger vers la liste des services
             header('Location: /list_services');
         }
-
+        // afficher le formulaire de mise à jour du service
+        include '../app/views/services/update.php';
     }
 
     public function update($id)

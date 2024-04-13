@@ -54,6 +54,17 @@ class AppointmentsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAppointmentsByUser($userId)
+    {
+        // Logique pour récupérer tous les rendez-vous d'un utilisateur spécifique
+        // Retournez les données de tous les rendez-vous trouvés
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE userId = :userId';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function updateAppointment($id, $data)
     {
         // Logique pour mettre à jour un enregistrement spécifique dans la table "appointments" en fonction de l'ID

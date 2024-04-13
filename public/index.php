@@ -27,6 +27,9 @@ if ($path == '/') {
 } elseif($path == '/myaccount') {
     $controller = new UsersController();
     $controller->index();
+} elseif($path == '/create_user') {
+    $controller = new UsersController();
+    $controller->createUser();
 } elseif($path == '/admin') {
     $controller = new UsersController();
     $controller->indexAdmin();
@@ -70,6 +73,9 @@ if ($path == '/') {
 } elseif($path == '/update_services') {
     $controller = new ServicesController();
     $controller->updateService($_GET['id']);
+} elseif($path == '/index2') {
+    // afficher la page statique index2.php dans public
+    include 'index2.html';
 } else{
      // Gérer les autres chemins ou afficher une erreur 404
      echo "404 Not Found";

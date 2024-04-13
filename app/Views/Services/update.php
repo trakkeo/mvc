@@ -13,26 +13,23 @@ namespace App\Views\Services;
     <h1>Modifier un service</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
 
-    // Form to update a service
-    <form action="/update_service" method="POST">
+    <form action="/update_services?id=<?php echo $service['id']; ?>" method="POST">
     <div class="form-group">
-        <label for="id">Id :</label>
-        <input type="text" class="form-control" name="id" id="id" value="<?php echo $service['id']; ?>">
-    <div class="form-group">
-        <label for="name">Nom :</label>
-        <input type="text" class="form-control" name="name" id="name" value="<?php echo $service['name']; ?>">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="name" name="name" type="text" value="<?php echo $service['name']; ?>" />
+        <label for="name">Nom du service</label>
     </div>
-    <div class="form-group">
-        <label for="description">Description :</label>
-        <input type="text" class="form-control" name="description" id="description" value="<?php echo $service['description']; ?>">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="description" name="description" type="text" value="<?php echo $service['description']; ?>" />
+        <label for="description">Description</label>
     </div>
-    <div class="form-group">
-        <label for="status">Status :</label>
-        <select class="form-control" name="status" id="status">
-            <option value="active" <?php echo $service['status'] === 'draft' ? 'selected' : ''; ?>>Brouillon</option>
-            <option value="inactive" <?php echo $service['status'] === 'published' ? 'selected' : ''; ?>>Publié</option>
-            <option value="inactive" <?php echo $service['status'] === 'archived' ? 'selected' : ''; ?>>Archivé</option>
+    <div class="form-floating mb-3">
+        <select class="form-control" id="status" name="status" type="text" value="<?php echo $service['status']; ?>">
+            <option value="draft" <?php echo $service['status'] === 'draft' ? 'selected' : ''; ?>>Brouillon</option>
+            <option value="published" <?php echo $service['status'] === 'published' ? 'selected' : ''; ?>>Publié</option>
+            <option value="archive" <?php echo $service['status'] === 'archived' ? 'selected' : ''; ?>>Archivé</option>
         </select>
+        <label for="status">Status</label>
     </div>
     
             <input type="submit" class="btn btn-primary" value="Enregistrer les modifications">

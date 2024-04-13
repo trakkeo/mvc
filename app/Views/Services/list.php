@@ -38,8 +38,8 @@ namespace App\Views\Services;
             echo '<td>' . htmlspecialchars($service['description']) . '</td>';
             echo '<td>' . htmlspecialchars($service['status']) . '</td>';
             echo '<td>';
-            echo '<a href="/update_service?id=' . $service['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
-            echo '<a href="/delete_service?id=' . $service['id'] . '" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer</a>';
+            echo '<a href="/update_services?id=' . $service['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
+            echo '<a href="/delete_services?id=' . $service['id'] . '" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer</a>';
             echo '</td>';
             echo '</tr>';
         }

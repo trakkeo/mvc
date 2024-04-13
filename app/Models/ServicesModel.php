@@ -22,6 +22,14 @@ class ServicesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getPublishedServices()
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE status = published';
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function createService($data)
     {
         if (!isset($data['name']) || $data['name'] === null) {
@@ -32,7 +40,7 @@ class ServicesModel
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':price', $data['price']);
+        $stmt->bindParam(':status', $data['status']);
         $stmt->execute();
         return $this->conn->lastInsertId();
     }
@@ -48,7 +56,7 @@ class ServicesModel
 
     public function updateService($id, $data)
     {
-        $query = 'UPDATE services SET name = :name, description = :description, price = :price WHERE id = :id';
+        $query = 'UPDATE services SET name = :name, description = :description, status = :status WHERE id = :id';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $data['name']);

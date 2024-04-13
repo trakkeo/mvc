@@ -20,7 +20,7 @@
                 <h2>Cabinet Médical du Dr Dupont</h2>
                 <p><br />Bienvenue sur le site du cabinet médical du Dr Dupont. Vous pouvez prendre rendez-vous en ligne, consulter vos rendez-vous, consulter les services proposés par le cabinet et mettre à jour vos informations personnelles.</p>
                 <?php
-                //display the list of services in a bootstrap table for the collumns name description status
+                //display the list of services in a bootstrap table for the collumns name description status only for services with status=published
                 echo '<table class="table table-striped">';
                 echo '<thead>';
                 echo '<tr>';
@@ -30,10 +30,12 @@
                 echo '</thead>';
                 echo '<tbody>';
                 foreach ($services as $service) {
-                    echo '<tr>';
-                    echo '<td>' . htmlspecialchars($service['name']) . '</td>';
-                    echo '<td>' . htmlspecialchars($service['description']) . '</td>';
-                    echo '</tr>';
+                    if ($service['status'] == 'published') {
+                        echo '<tr>';
+                        echo '<td>' . htmlspecialchars($service['name']) . '</td>';
+                        echo '<td>' . htmlspecialchars($service['description']) . '</td>';
+                        echo '</tr>';
+                    }
                 }
                 echo '</tbody>';
                 echo '</table>';
