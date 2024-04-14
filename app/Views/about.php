@@ -14,6 +14,7 @@
         <h1>Pageabout</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
     </div>
+    
 
     <footer class="footer">
         <?php

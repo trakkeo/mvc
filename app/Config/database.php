@@ -8,8 +8,8 @@ class Database
 {
     private $host = 'localhost';
     private $db_name = 'rdvproject';
-    private $username = 'root';
-    private $password = '';
+    private $username = 'mvc';
+    private $password = 'P@stouadmin51821837';
     public $conn;
 
     public function __construct() {
