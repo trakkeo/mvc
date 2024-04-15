@@ -2,7 +2,7 @@
 namespace App\Models;
 use PDO;
 use App\Config\Database;
-//require_once '../Config/Database.php';
+require_once '../app/Config/database.php';
 
 class UserModel
 {

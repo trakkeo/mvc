@@ -17,7 +17,7 @@ class ServicesController
     {
         $servicesModel = new ServicesModel();
         $services = $servicesModel->getAllServices();
-        include '../app/views/services/list.php';
+        include '../app/Views/Services/list.php';
     }
 
     public function create()
@@ -55,7 +55,7 @@ class ServicesController
             header('Location: /list_services');
         }
         // afficher le formulaire de mise à jour du service
-        include '../app/views/services/update.php';
+        include '../app/Views/Services/update.php';
     }
 
     public function update($id)

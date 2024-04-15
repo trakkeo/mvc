@@ -20,7 +20,7 @@ class HomeController
         $services = $servicesModel->getAllServices();
 
 
-       include '../app/views/home.php';
+       include '../app/Views/home.php';
     }    
     
   
