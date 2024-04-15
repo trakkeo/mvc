@@ -21,7 +21,7 @@ class AppointmentsController
         $appointments = $this->appointmentsModel->getAppointments();
 
         // Afficher la vue des rendez-vous
-        include '../app/views/appointments/list.php';
+        include '../app/Views/Appointments/list.php';
     }
 
     public function show($id)
@@ -29,7 +29,7 @@ class AppointmentsController
         // Récupérer un rendez-vous spécifique
         $appointment = $this->appointmentsModel->getAppointment($id);
         // Afficher la vue du rendez-vous
-        include '../app/views/appointments/show.php';
+        include '../app/Views/Appointments/show.php';
     }
 
     public function create()
@@ -39,7 +39,7 @@ class AppointmentsController
         // Récupérer les informations de l'utilisateur à partir de la session
         //$user = $appointmentsModel->getUserByEmail($_SESSION['email']);
         // Afficher le formulaire de création de rendez-vous
-        include '../app/views/appointments/create.php';
+        include '../app/Views/Appointments/create.php';
         // Créer un nouveau rendez-vous
         $data = [
             'bookingAt' => $_POST['bookingAt'],

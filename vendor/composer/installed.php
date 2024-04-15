@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'adrien/pkg',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'a6e2865c4174fc00f64f23f98c279f0680b1fc13',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'adrien/pkg' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'a6e2865c4174fc00f64f23f98c279f0680b1fc13',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

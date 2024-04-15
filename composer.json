@@ -2,8 +2,7 @@
     "name": "adrien/pkg",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "home\\mvc\\public_html\\app\\": "home/mvc/public_html/app/"
+            "App\\": "app/"
         }
     },
     "authors": [

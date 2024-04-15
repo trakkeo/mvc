@@ -12,10 +12,10 @@ use App\Controllers\ServicesController;
 // Un routage très basique
 $url = $_SERVER['REQUEST_URI'];
 $path = parse_url($url, PHP_URL_PATH);
-if ($path == '/') {
+if($path == '/index.php') {
     $controller = new HomeController();
     $controller->index();
-} elseif($path == '/index.php') {
+} elseif($path == '/') {
     $controller = new HomeController();
     $controller->index();
 } elseif($path == '/about') {

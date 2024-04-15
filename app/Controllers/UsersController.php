@@ -46,7 +46,7 @@ class UsersController
             exit;
         }
         // Afficher le formulaire de création d'un nouvel utilisateur
-        require '../app/views/admin/createuser.php';
+        require '../app/Views/Admin/createuser.php';
     }
 
     public function getAllUsers()
@@ -60,7 +60,7 @@ class UsersController
         $isAdmin = $userModel->isAdmin($_SESSION['email']);
         // if user is admin display manageusers.php
         if ($isAdmin) {
-            require '../app/views/admin/manageusers.php';
+            require '../app/Views/Admin/manageusers.php';
         } else {
             // if user is not admin display error message
             echo '<p>Vous n\'êtes pas autorisé à voir cette liste</p>';
@@ -69,7 +69,7 @@ class UsersController
 
     public function index()
     {
-        include '../app/views/Users/myaccount.php';
+        include '../app/Views/Users/myaccount.php';
         // Créer une instance du modèle de l'utilisateur
         $userModel = new UserModel();
         // Récupérer les informations de l'utilisateur à partir de la session
@@ -78,7 +78,7 @@ class UsersController
 
     public function indexAdmin()
     {
-        include '../app/views/Admin/index.php';
+        include '../app/Views/Admin/index.php';
     }
 
 
@@ -105,7 +105,7 @@ class UsersController
         }
 
         // Code pour mettre à jour le compte utilisateur
-        include '../app/views/Users/updatemyaccount.php';
+        include '../app/Views/Users/updatemyaccount.php';
     }
 
 
@@ -122,13 +122,13 @@ class UsersController
             foreach ($errors as $error) {
                 echo '<p class="alert alert-danger">' . $error . '</p>';
             }
-            include '../app/views/Users/changepassword.php';
+            include '../app/Views/Users/changepassword.php';
         }
     }
     public function deleteAccountAdmin()
     {
         // Code pour supprimer le compte utilisateur
-        include '../app/views/Admin/manageusers.php';
+        include '../app/Views/Admin/manageusers.php';
         // Supprimer le compte utilisateur
         $this->userModel->deleteUser($user['id']);
         // Rediriger vers la page de connexion
@@ -170,6 +170,6 @@ class UsersController
         }
 
         // Inclure la vue seulement si la requête n'est pas POST ou si la mise à jour échoue
-        include '../app/views/Admin/updateuseraccount.php';
+        include '../app/Views/Admin/updateuseraccount.php';
     }
 }
