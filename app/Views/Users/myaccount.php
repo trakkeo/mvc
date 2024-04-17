@@ -1,12 +1,9 @@
-<?php
-namespace App\Views\Users;
-use App\Models\UserModel;
-
-
-?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
 </head>
 <body>
@@ -15,15 +12,17 @@ use App\Models\UserModel;
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
+<!-- conteneur bootstrap 50/50 -->
+<div class="row" style="margin-top: 1em;">
+    <div class="col-md-6">
+
     <h1>Mon Compte</h1>
     <p>Vous pouvez consulter et modifier les détails de votre compte.</p>
 
     <?php if // if user is logged in, display user details
 (isset($_SESSION['LOGGED_USER'])) :
-    // create an instance of the UserModel
-    $userModel = new UserModel();
-    $user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
-    //display user details in a bootstrap table
+    // display user details in a responsive bootstrap table
+    echo '<div class="table-responsive">';
     echo '<table class="table">';
     echo '<tr>';
     echo '<th>Prénom</th>';
@@ -38,15 +37,13 @@ use App\Models\UserModel;
     echo '<td>' . $user['phone'] . '</td>';
     echo '</tr>';
     echo '</table>';
+    echo '</div>';
 
     // ajouter un bouton bootstrap pour mettre à jour le profil
-    echo '<a href="/update_myaccount" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier mon profil</a>';
+    echo '<br><br><a href="/update_myaccount" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier mon profil</a><br><br>';
 
     // ajouter un bouton bootstrap pour changer le mot de passe
-    echo '<a href="/change_password" class="btn btn-primary mb-2" style="margin-right: 5px;">Changer le mot de passe</a>';
-
-    // ajouter un bouton bootstrap pour supprimer le compte
-    echo '<a href="/delete_account" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer le compte</a>';
+    echo '<a href="/change_password" class="btn btn-primary mb-2" style="margin-right: 5px;">Changer le mot de passe</a><br><br>';
 
     // si l'utilisateur n'est pas connecté, afficher un message d'erreur class = "alert alert-danger"
 
@@ -58,13 +55,15 @@ endif;
 ?>
     
 </div>
-<div>    
-<footer class="footer">
-<?php
-// insérer le footer 
-require_once '../app/Views/footer.php'; 
-?>
-</footer>
 </div>
-</body>
+</div>
+
+<footer class="footer">
+        <?php
+        // insérer le footer 
+        require_once '../app/Views/footer.php';
+        ?>
+    </footer>
+    </body>
+
 </html>

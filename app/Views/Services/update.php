@@ -1,17 +1,16 @@
-<?php
-namespace App\Views\Services;
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un service</title>
 </head>
 <body>
     <?php include '../app/Views/header.php'; ?>
     <div class="container">
     <h1>Modifier un service</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
+    <p>Vous pouvez mettre à jour les détails du service.</p>
 
     <form action="/update_services?id=<?php echo $service['id']; ?>" method="POST">
     <div class="form-group">

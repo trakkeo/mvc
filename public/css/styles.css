@@ -102,6 +102,10 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* ajout adrien */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 hr {
@@ -11039,10 +11043,11 @@ html {
   padding-bottom: 1rem;
   background-color: #f8f9fa;
   color: #fff;
-  /* garder le footer en bas de page */
+  /* garder le footer en bas de page
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 100%; */
+  margin-top: auto;
 }
 
 .copyright {

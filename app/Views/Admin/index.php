@@ -8,10 +8,12 @@ use App\Models\UserModel;
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-    <title>Gestion des utilisateurs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration</title>
 </head>
 
 <body>
@@ -27,18 +29,16 @@ use App\Models\UserModel;
         $isAdmin = $userModel->isAdmin($_SESSION['LOGGED_USER']['email']);
         if ($isAdmin) {
             // display message if user is an admin
-            echo '<p>Vous êtes connecté en tant qu\'administrateur</p>';
-            // ajouter un bouton bootstrap pour créer un nouvel utilisateur
-            echo '<a href="/create_user" class="btn btn-primary mb-2" style="margin-right: 5px;">Créer un nouvel utilisateur</a>';
+            echo '<p>Vous êtes connecté en tant qu\'administrateur</p><br>';
             // ajouter un bouton bootstrap pour gérer les services
-            echo '<a href="/list_services" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les services</a>';
+            echo '<a href="/list_services" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les services</a><br><br>';
             // ajouter un bouton bootstrap pour gérer les rendez-vous
-            echo '<a href="/get_appointments" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les rendez-vous</a>';
+            echo '<a href="/get_appointments" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les rendez-vous</a><br><br>';
             // ajouter un bouton bootstrap pour gérer les utilisateurs
-            echo '<a href="/manage_users" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les utilisateurs</a>';
+            echo '<a href="/manage_users" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les utilisateurs</a><br><br>';
         } else {
-            // display message if user is not an admin
-            echo '<p>Vous n\'êtes pas autorisé à voir cette liste</p>';
+            // redirection vers /adminonly si l'utilisateur n'est pas un administrateur
+            header('Location: /adminonly');
         }
         ?>
 

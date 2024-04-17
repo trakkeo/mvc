@@ -1,12 +1,9 @@
-<?php
-
-namespace App\Views\Users;
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier mon compte</title>
 </head>
 
@@ -14,7 +11,7 @@ namespace App\Views\Users;
     <?php include '../app/Views/header.php'; ?>
     <div class="container">
         <h1>Modifier mon compte</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
+        <p>Vous pouvez mettre à jour les détails de votre compte.</p>
 
 
         <form action="/update_myaccount" method="POST">

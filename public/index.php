@@ -33,6 +33,9 @@ if($path == '/index.php') {
 } elseif($path == '/admin') {
     $controller = new UsersController();
     $controller->indexAdmin();
+} elseif($path == '/adminonly') {
+    $controller = new UsersController();
+    $controller->adminOnly();
 } elseif($path == '/update_myaccount') {
     $controller = new UsersController();
     $controller->updateMyAccount();

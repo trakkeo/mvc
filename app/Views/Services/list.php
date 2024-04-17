@@ -1,11 +1,9 @@
-<?php
-namespace App\Views\Services;
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Services</title>
 </head>
 
@@ -16,7 +14,7 @@ namespace App\Views\Services;
     <div class="container">
 
         <h1>Liste des Services</h1>
-        <p>Consultation des services</p>
+        <p>Consultation, création et modification des services</p>
 
         <?php
         //display the list of services in a bootstrap table for the collumns name description status
@@ -39,7 +37,6 @@ namespace App\Views\Services;
             echo '<td>' . htmlspecialchars($service['status']) . '</td>';
             echo '<td>';
             echo '<a href="/update_services?id=' . $service['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
-            echo '<a href="/delete_services?id=' . $service['id'] . '" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer</a>';
             echo '</td>';
             echo '</tr>';
         }

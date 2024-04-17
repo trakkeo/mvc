@@ -63,17 +63,18 @@ class UsersController
             require '../app/Views/Admin/manageusers.php';
         } else {
             // if user is not admin display error message
-            echo '<p>Vous n\'êtes pas autorisé à voir cette liste</p>';
+            echo '<p>Vous n\'êtes pas autorisé à voir cette page</p>';
         }
     }
 
     public function index()
     {
-        include '../app/Views/Users/myaccount.php';
+
         // Créer une instance du modèle de l'utilisateur
         $userModel = new UserModel();
         // Récupérer les informations de l'utilisateur à partir de la session
         $user = $userModel->getUserByEmail($_SESSION['email']);
+        include '../app/Views/Users/myaccount.php';
     }
 
     public function indexAdmin()
@@ -171,5 +172,11 @@ class UsersController
 
         // Inclure la vue seulement si la requête n'est pas POST ou si la mise à jour échoue
         include '../app/Views/Admin/updateuseraccount.php';
+    }
+
+    public function adminOnly()
+    {
+        // Afficher la page réservée aux administrateurs
+        require '../app/Views/Admin/adminonly.php';
     }
 }

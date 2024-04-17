@@ -4,7 +4,11 @@ use App\Models\UserModel;
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
     <title>Liste des rendez-vous</title>
@@ -50,7 +54,6 @@ use App\Models\UserModel;
                     echo '<td>' . htmlspecialchars($user['firstName']) . ' ' . htmlspecialchars($user['lastName']) . '</td>';
                     echo '<td>';
                     echo '<a href="/update_appointment?id=' . $appointment['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
-                    echo '<a href="/delete_appointment?id=' . $appointment['id'] . '" class="btn btn-danger mb-2" style="margin-right: 5px;">Supprimer</a>';
                     echo '</td>';
                     echo '</tr>';
 

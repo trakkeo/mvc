@@ -14,7 +14,11 @@
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
         <h1>Connectez-vous</h1>
-
+    <!-- Si utilisateur est identifié, on redirige vers la page d'accueil -->
+        <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
+            <p>Vous êtes déjà connecté(e) en tant que <?php echo $_SESSION['LOGGED_USER']['email']; ?></p>
+            <a href="/" class="btn btn-primary mb-2" style="margin-right: 5px;">Retour à la page d'accueil</a>
+        <?php endif; ?>
     <!-- Si utilisateur/trice est non identifié(e), on affiche le formulaire -->
         <?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
             <?php if (isset($_SESSION['LOGIN_ERROR_MESSAGE'])) : ?>
@@ -40,5 +44,9 @@
     </div>
     </div>
 
-    <!-- insérer le footer -->
-    <?php include 'footer.php'; ?>
+    <!-- insérer le footer avec la classe footer -->
+    <footer class="footer">
+        <?php require_once 'footer.php'; ?>
+    </footer>
+</body>
+
