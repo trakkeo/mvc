@@ -20,8 +20,8 @@
                 <h2>Cabinet Médical du Dr Dupont</h2>
                 <p><br />Bienvenue sur le site du cabinet médical du Dr Dupont. Vous pouvez prendre rendez-vous en ligne, consulter vos rendez-vous, consulter les services proposés par le cabinet et mettre à jour vos informations personnelles.</p>
                 <br />
-                <button class="btn btn-primary">Prendre rendez-vous</button><br /><br />
-                <button class="btn btn-primary">Consultez mes rendez-vous</button><br /><br />
+                <a href="/create_appointment" class="btn btn-primary mb-2" style="margin-right: 5px;">Prendre rendez-vous</a>
+                <br /><br />
                 <?php
                 //display the list of services in a bootstrap table for the collumns name description status only for services with status=published
                 echo '<table class="table table-striped">';

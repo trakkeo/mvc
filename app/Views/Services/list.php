@@ -31,10 +31,10 @@
         echo '<tbody>';
         foreach ($services as $service) {
             echo '<tr>';
-            echo '<td>' . htmlspecialchars($service['id']) . '</td>';
-            echo '<td>' . htmlspecialchars($service['name']) . '</td>';
-            echo '<td>' . htmlspecialchars($service['description']) . '</td>';
-            echo '<td>' . htmlspecialchars($service['status']) . '</td>';
+            echo '<td>' . ($service['id']) . '</td>';
+            echo '<td>' . ($service['name']) . '</td>';
+            echo '<td>' . ($service['description']) . '</td>';
+            echo '<td>' . ($service['status']) . '</td>';
             echo '<td>';
             echo '<a href="/update_services?id=' . $service['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
             echo '</td>';

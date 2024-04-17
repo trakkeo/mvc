@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AppointmentsModel;
+use App\Models\UserModel;
 
 session_start();
 
@@ -34,32 +35,63 @@ class AppointmentsController
 
     public function create()
     {
-        //créer une instance du modèle de rendez-vous
-        $appointmentsModel = new AppointmentsModel();
-        // Récupérer les informations de l'utilisateur à partir de la session
-        //$user = $appointmentsModel->getUserByEmail($_SESSION['email']);
+        // Vérifier si l'utilisateur est connecté
+        if (!isset($_SESSION['LOGGED_USER'])) {
+            // Rediriger vers la page de connexion et afficher un message d'erreur
+            $_SESSION['ERROR_MESSAGE'] = 'Veuillez vous connecter pour accéder à cette page.';
+            header('Location: /login');
+            exit;
+        } else {
+            // récupérer l'id de l'utilisateur connecté à partir de la fonction getUserByEmail de UserModel
+            $userModel = new UserModel();
+            $user = $userModel->getUserByEmail($_SESSION['LOGGED_USER']['email']);
+
+            // Traitement de la requête POST pour créer un nouveau rendez-vous
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Assurer la validation et l'assainissement des données ici
+                $data = [
+                    'bookingAt' => $_POST['bookingAt'],
+                    'notes' => $_POST['notes'],
+                    'serviceId' => $_POST['serviceId'],
+                    'userId' => $user['id']
+                ];
+
+                $this->appointmentsModel->createAppointment($data);
+                // Rediriger vers la liste des rendez-vous
+                header('Location: /get_appointments');
+
+        }
         // Afficher le formulaire de création de rendez-vous
         include '../app/Views/Appointments/create.php';
-        // Créer un nouveau rendez-vous
-        $data = [
-            'bookingAt' => $_POST['bookingAt'],
-            'notes' => $_POST['notes'],
-            'serviceId' => $_POST['serviceId'],
-            'userId' => $_POST['userId']
-        ];
-
-
-        $this->appointmentsModel->createAppointment($data);
-        // Rediriger vers la liste des rendez-vous
-        header('Location: /appointments');
     }
-
+    }
 
     public function update($id)
     {
+        // Récupérer un rendez-vous spécifique
+        $appointment = $this->appointmentsModel->getAppointment($id);
 
+        // Traitement de la requête POST pour mettre à jour un rendez-vous
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Assurer la validation et l'assainissement des données ici
+            $data = [
+                'bookingAt' => $_POST['bookingAt'],
+                'notes' => $_POST['notes'],
+                'serviceId' => $_POST['serviceId'],
+                'userId' => $_POST['userId'],
+                'status' => $_POST['status']
+            ];
+
+            $this->appointmentsModel->updateAppointment($appointment['id'], $data);
+            // Rediriger vers la liste des rendez-vous
+            header('Location: /get_appointments');
+            exit;
         }
-    
+
+        // Afficher le formulaire de mise à jour du rendez-vous
+        include '../app/Views/Appointments/update.php';
+    }
+
 
     public function delete($id)
     {
@@ -68,6 +100,4 @@ class AppointmentsController
         // Rediriger vers la liste des rendez-vous
         header('Location: /appointments');
     }
-
 }
-?>

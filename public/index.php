@@ -9,6 +9,7 @@ use App\Controllers\UsersController;
 use App\Controllers\AppointmentsController;
 use App\Controllers\ServicesController;
 use App\Controllers\EmailController;
+use App\Controllers\NewsController;
 
 // Un routage très basique
 $url = $_SERVER['REQUEST_URI'];
@@ -54,6 +55,12 @@ if($path == '/index.php') {
     $controller->logout();
 } elseif($path == '/contact') {
     $controller = new EmailController();
+    $controller->index();
+} elseif($path == '/send_email') {
+    $controller = new EmailController();
+    $name = isset($_GET['name']) ? $_GET['name'] : '';
+    $email = isset($_GET['email']) ? $_GET['email'] : '';
+    $message = isset($_GET['message']) ? $_GET['message'] : '';
     $controller->sendEmail($name, $email, $message);
     //Administration
 } elseif($path == '/manage_users') {
@@ -65,9 +72,9 @@ if($path == '/index.php') {
 } elseif($path == '/create_appointment') {
     $controller = new AppointmentsController();
     $controller->create();
-// } elseif($path == '/update_appointment') {
-//     $controller = new AppointmentsController();
-//     $controller->update();
+} elseif($path == '/update_appointment') {
+     $controller = new AppointmentsController();
+     $controller->update($_GET['id']);
 // } elseif($path == '/delete_appointment') {
 //     $controller = new AppointmentsController();
 //     $controller->delete();
@@ -80,6 +87,18 @@ if($path == '/index.php') {
 } elseif($path == '/update_services') {
     $controller = new ServicesController();
     $controller->updateService($_GET['id']);
+} elseif($path == '/list_news') {
+    $controller = new NewsController();
+    $controller->list();
+} elseif($path == '/create_news') {
+    $controller = new NewsController();
+    $controller->createNews();
+} elseif($path == '/update_news') {
+    $controller = new NewsController($_GET['id']);
+    $controller->updateNews();
+} elseif($path == '/show_news') {
+    $controller = new NewsController();
+    $controller->showNews();
 } elseif($path == '/index2') {
     // afficher la page statique index2.php dans public
     include 'index2.html';

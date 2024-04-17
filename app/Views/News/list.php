@@ -1,7 +1,7 @@
 <?php
 namespace App\Views\Appointments;
+use App\Models\NewsModel;
 use App\Models\UserModel;
-use App\Models\ServicesModel;
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ use App\Models\ServicesModel;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-    <title>Liste des rendez-vous</title>
+    <title>Liste des actualités</title>
 </head>
 
 <body>
@@ -21,10 +21,10 @@ use App\Models\ServicesModel;
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
-        <h1>Liste des rendez-vous</h1>
-        <p>Consultation et gestion des rendez-vous</p>
+        <h1>Liste des actualités</h1>
+        <p>Consultation et gestion des actualités</p>
 
-        <a href="/create_appointment" class="btn btn-primary mb-2" style="margin-right: 5px;">Créer un nouveau rendez-vous</a>
+        <a href="/create_news" class="btn btn-primary mb-2" style="margin-right: 5px;">Créer une actualité</a>
 
         <?php
         if (isset($_SESSION['LOGGED_USER'])) :
@@ -33,35 +33,30 @@ use App\Models\ServicesModel;
             if ($isAdmin) {
                 // display message if user is an admin
                 echo '<p>Vous êtes connecté en tant qu\'administrateur</p>';
-                // display the list of appointments in a bootstrap table
+                // display the list of news in a bootstrap table
                 echo '<table class="table table-striped">';
                 echo '<thead>';
                 echo '<tr>';
                 echo '<th scope="col">Id</th>';
-                echo '<th scope="col">Date et Heure</th>';
-                echo '<th scope="col">Notes</th>';
-                echo '<th scope="col">Service</th>';
+                echo '<th scope="col">Titre</th>';
+                echo '<th scope="col">Contenu</th>';
+                echo '<th scope="col">Date de publication</th>';
                 echo '<th scope="col">Utilisateur</th>';
                 echo '<th scope="col">Status</th>';
                 echo '<th scope="col">Actions</th>';
                 echo '</tr>';
                 echo '</thead>';
                 echo '<tbody>';
-                foreach ($appointments as $appointment) {
+                foreach ($news as $new) {
                     echo '<tr>';
-                    echo '<td>' . $appointment['id'] . '</td>';
-                    echo '<td>' . $appointment['bookingAt'] . '</td>';
-                    echo '<td>' . $appointment['notes'] . '</td>';
-                    // how to display the service name instead of the id?
-                    $serviceModel = new ServicesModel();
-                    $service = $serviceModel->getService($appointment['serviceId']);                    
-                    echo '<td>' . $service['name'] . '</td>';
-                    //display user firstNam and lastName instead of the userId
-                    $user = $userModel->getUserById($appointment['userId']);
-                    echo '<td>' . $user['firstName'] . ' ' . $user['lastName'] . '</td>';
-                    echo '<td>' . $appointment['status'] . '</td>';
+                    echo '<td>' . $new['id'] . '</td>';
+                    echo '<td>' . $new['title'] . '</td>';
+                    echo '<td>' . $new['content'] . '</td>';
+                    echo '<td>' . $new['createdAt'] . '</td>';
+                    echo '<td>' . $new['userId'] . '</td>';
+                    echo '<td>' . $new['status'] . '</td>';
                     echo '<td>';
-                    echo '<a href="/update_appointment?id=' . $appointment['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
+                    echo '<a href="/update_news?id=' . $new['id'] . '" class="btn btn-primary mb-2" style="margin-right: 5px;">Modifier</a>';
                     echo '</td>';
                     echo '</tr>';
                 }

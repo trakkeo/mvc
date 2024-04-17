@@ -67,8 +67,28 @@ class AppointmentsModel
 
     public function updateAppointment($id, $data)
     {
-        // Logique pour mettre à jour un enregistrement spécifique dans la table "appointments" en fonction de l'ID
-        // Utilisez les valeurs de $data pour mettre à jour les colonnes appropriées dans la table
+   
+            // Préparez la requête SQL pour mettre à jour le rendez-vous
+            $query = 'UPDATE ' . $this->table . ' SET bookingAt = :bookingAt, notes = :notes, serviceId = :serviceId, userId = :userId, status = :status WHERE id = :id';
+            $stmt = $this->conn->prepare($query);
+        
+            // Liez les paramètres à la requête
+            $stmt->bindParam(':bookingAt', $data['bookingAt']);
+            $stmt->bindParam(':notes', $data['notes']);
+            $stmt->bindParam(':serviceId', $data['serviceId']);
+            $stmt->bindParam(':userId', $data['userId']);
+            $stmt->bindParam(':status', $data['status']);
+            $stmt->bindParam(':id', $id);
+        
+            // Exécutez la requête
+            if ($stmt->execute()) {
+                // Si tout va bien, retournez true
+                return true;
+            }
+        
+            // Si quelque chose ne va pas, retournez false
+            return false;
+    
     }
 
     public function deleteAppointment($id)

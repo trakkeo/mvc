@@ -17,9 +17,6 @@ class UsersController
 
     public function createUser()
     {
-
-
-
         // Traitement de la requête POST pour créer un nouvel utilisateur
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Assurer la validation et l'assainissement des données ici
@@ -170,7 +167,7 @@ class UsersController
             exit;
         }
 
-        // Inclure la vue seulement si la requête n'est pas POST ou si la mise à jour échoue
+        // Inclure la vue pour mettre à jour les données de l'utilisateur
         include '../app/Views/Admin/updateuseraccount.php';
     }
 

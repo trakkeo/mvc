@@ -36,6 +36,8 @@ use App\Models\UserModel;
             echo '<a href="/get_appointments" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les rendez-vous</a><br><br>';
             // ajouter un bouton bootstrap pour gérer les utilisateurs
             echo '<a href="/manage_users" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les utilisateurs</a><br><br>';
+            // ajouter un bouton bootstrap pour gérer les actualités
+            echo '<a href="/list_news" class="btn btn-primary mb-2" style="margin-right: 5px;">Gérer les actualités</a><br><br>';
         } else {
             // redirection vers /adminonly si l'utilisateur n'est pas un administrateur
             header('Location: /adminonly');
