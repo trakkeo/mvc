@@ -9,7 +9,7 @@ class Database
     private $host = 'localhost';
     private $db_name = 'mvc';
     private $username = 'mvc';
-    private $password = 'P@stouadmin51821837';
+    private $password = 'mvc';
     public $conn;
 
     public function __construct() {
