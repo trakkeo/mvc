@@ -5,40 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site de Recettes - Page d'accueil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Contact</title>
 </head>
-
-<body class="d-flex flex-column min-vh-100">
+<body>
+    <!-- intégrer le header -->
+    <?php include 'header.php'; ?>
+    <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
-        <?php require_once(__DIR__ . '/header.php'); ?>
-        <h1>Contactez nous</h1>
-        <form action="submit_contact.php" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="email-help">
-                <div id="email-help" class="form-text">Nous ne revendrons pas votre email.</div>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Votre message</label>
-                <textarea class="form-control" placeholder="Exprimez vous" id="message" name="message"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label">Votre age</label>
-                <textarea class="form-control" placeholder="Votre age" id="age" name="age"></textarea>
-            </div>
-            <!-- Ajout champ d'upload ! -->
-            <div class="mb-3">
-                <label for="screenshot" class="form-label">Votre capture d'écran</label>
-                <input type="file" class="form-control" id="screenshot" name="screenshot" />
-            </div>
-            <!-- Fin ajout du champ -->
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </form>
-    </div>
+        <!-- conteneur bootstrap 50/50 -->
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-md-6">
+                <h2>Contact</h2>
+                <p>Vous pouvez nous contacter par téléphone ou par email.</p>
+                <br />
+                <p>Numéro de téléphone: 01 23 45 67 89</p>
+        <!-- insérer un formulaire de contact public function sendEmail($name, $email, $message) -->
+        <form action="/send_email" method="post">
+            <div class="form-group
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" name="name" id="name">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
+            <label for="message">Message</label>
+            <textarea class="form-control" name="message" id="message"></textarea>
+            <input type="submit" class="btn btn-primary" value="Envoyer">
+            
+</form>
 
-<footer class="footer">
+
 <?php
 // insérer le footer 
 require_once 'footer.php'; 

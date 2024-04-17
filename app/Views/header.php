@@ -47,7 +47,7 @@ use App\Models\UserModel;
                             <a class="nav-link" href="/about">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="/contact">Contact</a>
                         </li>
 
                         <?php

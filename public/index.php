@@ -8,6 +8,7 @@ use App\Controllers\LoginController;
 use App\Controllers\UsersController;
 use App\Controllers\AppointmentsController;
 use App\Controllers\ServicesController;
+use App\Controllers\EmailController;
 
 // Un routage très basique
 $url = $_SERVER['REQUEST_URI'];
@@ -51,6 +52,9 @@ if($path == '/index.php') {
 } elseif($path == '/logout') {
     $controller = new LoginController();
     $controller->logout();
+} elseif($path == '/contact') {
+    $controller = new EmailController();
+    $controller->sendEmail($name, $email, $message);
     //Administration
 } elseif($path == '/manage_users') {
     $controller = new UsersController();
