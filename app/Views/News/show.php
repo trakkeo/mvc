@@ -26,12 +26,12 @@ use App\Models\UserModel;
         <?php foreach ($news as $new):
         if ($new['status'] == 'published') { ?>
 
-    <div style="border: 1px solid #000; padding: 10px; margin-bottom: 10px;">
-        <h3><?php echo $new['title']; ?></h3>
-        <p><?php echo $new['content']; ?></p>
-        <?php $user = $userModel->getUserById($new['userId']); ?>
-        <p>Publié le <?php echo date('d/m/Y', strtotime($new['createdAt'])); ?> par <?php echo $user['firstName'] . ' ' . $user['lastName']; ?></p>
-    </div>
+<div style="border: 1px solid lightgray; padding: 10px; margin-bottom: 10px; border-radius: 10px; background-color: #f0f8f0;">
+    <h3><?php echo $new['title']; ?></h3>
+    <p><?php echo $new['content']; ?></p>
+    <?php $user = $userModel->getUserById($new['userId']); ?>
+    <p>Publié le <?php echo date('d/m/Y', strtotime($new['createdAt'])); ?> par <?php echo $user['firstName'] . ' ' . $user['lastName']; ?></p>
+</div>
 
 <?php } endforeach; ?>
 
