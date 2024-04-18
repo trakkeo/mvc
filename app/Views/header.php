@@ -44,6 +44,9 @@ use App\Models\UserModel;
                             <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/show_services">Services</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/show_news">Actualités</a>
                         </li>
                         <li class="nav-item">

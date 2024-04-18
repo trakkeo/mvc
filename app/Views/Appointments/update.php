@@ -29,9 +29,9 @@ use App\Models\UserModel;
     <label for="notes">Notes</label>
     <div class="form-floating mb-3">
     <select class="form-control" id="serviceId" name="serviceId" type="text" value="<?php echo $appointment['serviceId']; ?>">
-    <option value="1" <?php echo $appointment['serviceId'] === '1' ? 'selected' : ''; ?>>Médecine Génerale</option>
-    <option value="2" <?php echo $appointment['serviceId'] === '2' ? 'selected' : ''; ?>>Renouvellement d'ordonnance</option>
-    <option value="3" <?php echo $appointment['serviceId'] === '3' ? 'selected' : ''; ?>>Demande de certificat Médical</option>
+    <option value="1" <?php echo $appointment['serviceId'] === '1' ? 'selected' : ''; ?>>Soins dentaires courants</option>
+    <option value="2" <?php echo $appointment['serviceId'] === '2' ? 'selected' : ''; ?>>Orthodontie</option>
+    <option value="3" <?php echo $appointment['serviceId'] === '3' ? 'selected' : ''; ?>>Implantologie</option>
     </select>
     <label for="serviceId">Service</label>
     <div class="form-floating mb-3">

@@ -36,7 +36,7 @@
                     if ($service['status'] == 'published') {
                         echo '<tr>';
                         echo '<td>' . htmlspecialchars($service['name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($service['description']) . '</td>';
+                        echo '<td>' . htmlspecialchars(substr($service['description'], 0, 120)) . '... <a href="/show_services">En savoir plus</a></td>';
                         echo '</tr>';
                     }
                 }
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-
+    </div>
 
     <footer class="footer">
         <?php

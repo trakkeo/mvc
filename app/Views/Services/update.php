@@ -19,7 +19,7 @@
         <label for="name">Nom du service</label>
     </div>
     <div class="form-floating mb-3">
-        <input class="form-control" id="description" name="description" type="text" value="<?php echo $service['description']; ?>" />
+        <textarea class="form-control" id="description" name="description"><?php echo $service['description']; ?></textarea>
         <label for="description">Description</label>
     </div>
     <div class="form-floating mb-3">

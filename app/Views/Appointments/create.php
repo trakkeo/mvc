@@ -34,9 +34,9 @@ namespace AppViews\Appointments;
                 <!-- creer un champ pour le service du rendez-vous -->
                 <label for="serviceId">Service :</label>
                 <select class="form-control" name="serviceId" id="serviceId">
-                    <option value="1">Médecine Génerale</option>
-                    <option value="2">Renouvellement d'ordonnance</option>
-                    <option value="3">Demande de ceetificat Médical</option>
+                    <option value="1">Soins dentaires courants</option>
+                    <option value="2">Orthodontie</option>
+                    <option value="3">Implantologie</option>
                 </select>
 
                 <input type="submit" class="btn btn-primary" value="Prendre un rendez-vous">

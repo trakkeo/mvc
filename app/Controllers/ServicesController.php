@@ -67,4 +67,9 @@ class ServicesController
     {
         // Code pour supprimer un service de la base de données
     }
+
+    public function showServices()
+    {
+    require_once '../app/Views/Services/show.php';
+    }
 }

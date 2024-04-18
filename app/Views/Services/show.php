@@ -1,9 +1,10 @@
 <?php
-namespace App\Views\Appointments;
-use App\Models\NewsModel;
-use App\Models\UserModel;
+namespace App\Views\Services;
 
-$userModel = new UserModel();
+use App\Models\ServicesModel;
+
+$servicesModel = new ServicesModel();
+$services = $servicesModel->getAllServices();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ $userModel = new UserModel();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-    <title>Liste des actualités</title>
+    <title>Liste des services</title>
 </head>
 
 <body>
@@ -23,18 +24,16 @@ $userModel = new UserModel();
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
-        <h1>Liste des actualités</h1>
+        <h1>Liste des services</h1>
 
-        <?php foreach ($news as $new):
-        if ($new['status'] == 'published') { ?>
+        <?php foreach ($services as $service):
+        if ($service['status'] == 'published') { ?>
 
 <div style="border: 1px solid lightgray; padding: 10px; margin-bottom: 10px; border-radius: 10px; background-color: #f0f8f0;">
-    <h3><?php echo $new['title']; ?></h3>
-    <p><?php echo nl2br($new['content']); ?></p>
-
-    <?php $user = $userModel->getUserById($new['userId']); ?>
-    <p>Publié le <?php echo date('d/m/Y', strtotime($new['createdAt'])); ?> par <?php echo $user['firstName'] . ' ' . $user['lastName']; ?></p>
+    <h3><?php echo $service['name']; ?></h3>
+    <p><?php echo nl2br($service['description']); ?></p>
 </div>
+
 
 <?php } endforeach; ?>
 

@@ -87,6 +87,9 @@ if($path == '/index.php') {
 } elseif($path == '/update_services') {
     $controller = new ServicesController();
     $controller->updateService($_GET['id']);
+} elseif($path == '/show_services') {
+    $controller = new ServicesController();
+    $controller->showServices();
 } elseif($path == '/list_news') {
     $controller = new NewsController();
     $controller->list();

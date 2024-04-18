@@ -27,7 +27,10 @@
                     unset($_SESSION['LOGIN_ERROR_MESSAGE']);
                     ?>
                 </div>
+
             <?php endif; ?>
+            <div><p>Vous n'avez pas de compte ? <a href="/contact">Faites une demande de création de compte en ligne</a></p></br>
+                </div>
             <form action="/submit_login" method="POST">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
