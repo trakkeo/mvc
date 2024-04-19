@@ -58,10 +58,7 @@ if($path == '/index.php') {
     $controller->index();
 } elseif($path == '/send_email') {
     $controller = new EmailController();
-    $name = isset($_GET['name']) ? $_GET['name'] : '';
-    $email = isset($_GET['email']) ? $_GET['email'] : '';
-    $message = isset($_GET['message']) ? $_GET['message'] : '';
-    $controller->sendEmail($name, $email, $message);
+    $controller->sendEmail($_POST['name'], $_POST['email'], $_POST['message']);
     //Administration
 } elseif($path == '/manage_users') {
     $controller = new UsersController();

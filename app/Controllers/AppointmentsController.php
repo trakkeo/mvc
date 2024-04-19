@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\AppointmentsModel;
 use App\Models\UserModel;
+use App\Models\ServiceModel;
+use App\Models\ServicesModel;
 
 session_start();
 
@@ -55,8 +57,55 @@ class AppointmentsController
                     'serviceId' => $_POST['serviceId'],
                     'userId' => $user['id']
                 ];
+                
+                // Récupérer le service sélectionné
+                $serviceModel = new ServicesModel();
+                $service = $serviceModel->getService($data['serviceId']);
 
                 $this->appointmentsModel->createAppointment($data);
+                // Envoyer un email de confirmation
+                $to = $user['email'];
+                $subject = 'Votre rendez-vous';
+                $message = '<html>
+                <head>
+                    <title>Votre rendez-vous au Cabinet du Dr Dupont</title>
+                </head>
+                <body>
+                    <h1>Bonjour ' . $user['lastName'] . ' ' . $user['firstName'] . '</h1><br><br>
+                    <h3 style="color: #1abc9c;">Nous avons bien reçu votre demande de rendez-vous, il n\'est pas encore confirmé notre équipe reviendra vers vous sous peu afin de le valider.</h3>
+                    <p><strong>Service:</strong> ' . $service['name'] . '</p>
+                    <p><strong>Date et heure du rendez-vous:</strong> ' . date('d/m/y', strtotime($data['bookingAt'])) . ' à ' . date('H:i', strtotime($data['bookingAt'])) . '</p>
+                    <p><strong>Votre messsage:</strong> ' . $data['notes'] . '</p>
+                </body>
+                </html>';
+
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                mail($to, $subject, $message, $headers);
+
+                // Envoyer un email de notification à l'administrateur
+
+                $to = 'adrien@adrienbillard.com';
+                $subject = 'Nouveau rendez-vous';
+                $message = '<html>
+                <head>
+                    <title>Nouveau rendez-vous</title>
+                </head>
+                <body>
+                    <h1>Nouveau rendez-vous pour ' . $user['lastName'] . ' ' . $user['firstName'] . '</h1><br><br>
+                    <h3 style="color: #1abc9c;">Attention ce rendez-vous n\'est pas encore confirmé veuillez le valider depuis l\'administration du site</h3>
+                    <p><strong>Service:</strong> ' . $service['name'] . '</p>
+                    <p><strong>Date et heure du rendez-vous:</strong> ' . date('d/m/y', strtotime($data['bookingAt'])) . ' à ' . date('H:i', strtotime($data['bookingAt'])) . '</p>
+                    <p><strong>Notes du patient:</strong> ' . $data['notes'] . '</p>
+                </body>
+                </html>';
+
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                mail($to, $subject, $message, $headers);
+
                 // Rediriger vers la liste des rendez-vous
                 header('Location: /get_appointments');
 

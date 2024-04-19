@@ -40,12 +40,18 @@ class UserModel
     // update user
     public function updateUser($id, $userData)
     {
-        $query = 'UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone, role = :role WHERE id = :id';
+        $query = 'UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, password = :password, phone = :phone, role = :role WHERE id = :id';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id); 
         $stmt->bindParam(':firstName', $userData['firstName']);
         $stmt->bindParam(':lastName', $userData['lastName']);
         $stmt->bindParam(':email', $userData['email']);
+        // update password only if it's not empty and hash it
+        if (!empty($userData['password'])) {
+            $stmt->bindParam(':password', password_hash($userData['password'], PASSWORD_DEFAULT));
+        } else {
+            $stmt->bindParam(':password', $userData['password']);
+        }
         $stmt->bindParam(':phone', $userData['phone']);
         $stmt->bindParam(':role', $userData['role']);
 

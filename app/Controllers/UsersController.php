@@ -155,6 +155,7 @@ class UsersController
                 'firstName' => $_POST['firstName'] ?? '',
                 'lastName' => $_POST['lastName'] ?? '',
                 'email' => $_POST['email'] ?? '',
+                'password' => $_POST['password'] ?? '',
                 'phone' => $_POST['phone'] ?? '',
                 'role' => $_POST['role'] ?? '',
             ];

@@ -23,15 +23,19 @@
                 <p>Numéro de téléphone: 01 23 45 67 89</p>
                 <!-- insérer un formulaire de contact public function sendEmail($name, $email, $message) -->
                 <form action="/send_email" method="post">
-                    <div class="form-group
-            <label for=" name">Nom</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" name="name" type="text"/>
+                        <label for="name">Nom</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" name="email" type="email"/>
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" name="message"></textarea>
                         <label for="message">Message</label>
-                        <textarea class="form-control" name="message" id="message"></textarea>
-                        <input type="submit" class="btn btn-primary" value="Envoyer">
-
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Envoyer">
                 </form>
 
 

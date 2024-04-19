@@ -34,6 +34,9 @@ namespace App\Views\Admin;
         <label for="email">Email</label>
     </div>
     <div class="form-floating mb-3">
+        <input class="form-control" id="password" name="password" type="password" value="****" />
+        <label for="password">Mot de passe</label>
+    <div class="form-floating mb-3">
         <input class="form-control" id="phone" name="phone" type="text" value="<?php echo $user['phone']; ?>" />
         <label for="phone">Téléphone</label>
     </div>

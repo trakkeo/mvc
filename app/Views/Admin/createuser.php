@@ -20,6 +20,13 @@ namespace App\Views\Admin;
         <label for="lastName">Prénom</label>
     </div>
     <div class="form-floating mb-3">
+        <input class="form-control" id="firstName" name="firstName" type="text" value="" />
+        <label for="firstName">Nom</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="password" name="password" type="password" value="" />
+        <label for="password">Mot de passe</label>
+    <div class="form-floating mb-3">
         <input class="form-control" id="email" name="email" type="email" value="" />
         <label for="email">Email</label>
     </div>
