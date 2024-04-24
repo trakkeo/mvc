@@ -14,7 +14,7 @@ namespace App\Views\Admin;
     <?php include '../app/Views/header.php'; ?>
     <div class="container">
     <h1>Modifier un compte</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
+    <p>Vous pouvez mettre à jour les détails du compte utilisateur.</p>
 
     <form action="/update_user_account?id=<?php echo $user['id']; ?>" method="POST">
     <div class="form-floating mb-3" hidden>
@@ -44,6 +44,7 @@ namespace App\Views\Admin;
         <select class="form-select" id="role" name="role">
             <option value="patient" <?php if ($user['role'] == 'patient') echo 'selected'; ?>>Patient</option>
             <option value="admin" <?php if ($user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
+            <option value="inactif" <?php if ($user['role'] == 'inactif') echo 'selected'; ?>>Inactif</option>
         </select>
         <label for="role">Rôle</label>
     </div>

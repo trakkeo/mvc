@@ -13,6 +13,12 @@
     <!-- insérer un contenant pour le contenu de la page -->
     <div class="container">
 
+        <?php if (isset($_SESSION['account_inactif'])) {
+            echo '<p class="alert alert-danger">' . $_SESSION['account_inactif'] . '</p>';
+            // Unset the session variable so the message doesn't keep appearing
+            unset($_SESSION['account_inactif']);
+        }
+        ?>
         <!-- conteneur bootstrap 50/50 -->
         <div class="row" style="margin-top: 1em;">
             <div class="col-md-12">
@@ -23,11 +29,11 @@
                 <!-- formulaire de contact public function sendEmail($name, $email, $message) -->
                 <form action="/send_email" method="post">
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" name="name" type="text"/>
+                        <input class="form-control" id="name" name="name" type="text" />
                         <label for="name">Nom</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="email" name="email" type="email"/>
+                        <input class="form-control" id="email" name="email" type="email" />
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -40,14 +46,14 @@
 
             </div>
         </div>
-        </div>
-        </div>
-<footer class="footer">
-    <?php
-    // insérer le footer 
-    require_once 'footer.php';
-    ?>
-</footer>
+    </div>
+    </div>
+    <footer class="footer">
+        <?php
+        // insérer le footer 
+        require_once 'footer.php';
+        ?>
+    </footer>
 </body>
 
 </html>

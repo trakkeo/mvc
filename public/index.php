@@ -32,6 +32,20 @@ if ($isLogged) {
     $isAdmin = $userModel->isAdmin($_SESSION['LOGGED_USER']['email']);
 }
 
+// pour vérifier si l'utilisateur connecté est inactif
+$isInactif = false;
+if ($isLogged) {
+    $isInactif = $userModel->isInactif($_SESSION['LOGGED_USER']['email']);
+}
+// si l'utilisateur est inactif, rediriger vers la page contact avec message d'erreur
+if ($isInactif) {
+    $_SESSION['account_inactif'] = 'Votre compte est inactif. Veuillez contacter le cabinet afin de le réactiver. Pour consulter le site en tant que visiteur, cliquez sur <a href="/logout">Déconnexion</a>.';
+    // Check if the user is already on the contact page or trying to logout
+    if ($_SERVER['REQUEST_URI'] !== '/contact' && $_SERVER['REQUEST_URI'] !== '/logout') {
+        header('Location: /contact');
+        exit;
+    }
+}
 
 
 // routage basique

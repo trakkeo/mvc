@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\LoginModel;
+use  App\Models\UserModel;
 
 //session_start();
 
@@ -28,6 +29,22 @@ class LoginController
             // Redirect to home page
             // afficher un message de succès
             $_SESSION['LOGIN_SUCCESS_MESSAGE'] = 'Vous êtes maintenant connecté.';
+            // si l'utilisateur est un administrateur, rediriger vers la page d'administration
+            $userModel = new UserModel();
+            if ($userModel->isAdmin($email)) {
+                header('Location: /admin');
+                exit;
+            // si l'utilisateur est un patient, rediriger vers la page mon compte
+            }elseif ($userModel->isPatient($email)) {
+                header('Location: /myaccount');
+                exit;    
+            // si l'utilisateur est un inactif, rediriger vers la page contact avec message d'erreur
+            // }elseif ($userModel->isInactif($email)) {
+            //     $_SESSION['account_inactif'] = 'Votre compte est inactif. Veuillez contacter le cabinet afin de le réactiver.';
+            //     header('Location: /contact');
+            //     exit;
+            } else {}
+
             header('Location: /');
             exit;
             } else {

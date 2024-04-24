@@ -119,7 +119,7 @@ class UserModel
         return $stmt->fetch();
     }
 
-    // looged user role is admin ?
+    // logged user role is admin ?
     public function isAdmin($email)
     {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email AND role = :role';
@@ -129,6 +129,29 @@ class UserModel
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    // logged user role is patient ?
+    public function isPatient($email)
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email AND role = :role';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindValue(':role', 'patient');
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    // logged user role is inactif ?
+    public function isInactif($email)
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email AND role = :role';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindValue(':role', 'inactif');
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
 
     // login form validation
     public function validateLoginForm($postData)
