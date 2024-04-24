@@ -5,14 +5,14 @@ namespace App\Views\Admin;
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Modifier un compte</title>
+    <title>Créer un compte</title>
 </head>
 <body>
     <?php include '../app/Views/header.php'; 
     ?>
     <div class="container">
     <h1>Créer un compte</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolores nam reprehenderit numquam inventore dolorum optio tempora, minima repellat molestiae voluptates, magnam unde. Voluptates perferendis rerum, delectus exercitationem accusamus debitis.</p>
+    <p>Vous pouvez créer un nouveau compte utilisateur.</p>
 
     <form action="/create_user" method="POST">
     <div class="form-floating mb-3">

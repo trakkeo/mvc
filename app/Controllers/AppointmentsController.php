@@ -27,6 +27,15 @@ class AppointmentsController
         include '../app/Views/Appointments/list.php';
     }
 
+    public function getUserAppointments()
+    {
+        // Récupérer tous les rendez-vous
+        $appointments = $this->appointmentsModel->getAppointments();
+
+        // Afficher la vue des rendez-vous
+        include '../app/Views/Appointments/userlist.php';
+    }
+
     public function show($id)
     {
         // Récupérer un rendez-vous spécifique
@@ -147,6 +156,6 @@ class AppointmentsController
         // Supprimer un rendez-vous spécifique
         $this->appointmentsModel->deleteAppointment($id);
         // Rediriger vers la liste des rendez-vous
-        header('Location: /appointments');
+        header('Location: /get_appointments');
     }
 }

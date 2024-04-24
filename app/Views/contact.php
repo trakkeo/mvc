@@ -20,7 +20,7 @@
                 <p>Vous pouvez nous contacter par téléphone ou par email.</p>
                 <br />
                 <p>Numéro de téléphone: 01 23 45 67 89</p>
-                <!-- insérer un formulaire de contact public function sendEmail($name, $email, $message) -->
+                <!-- formulaire de contact public function sendEmail($name, $email, $message) -->
                 <form action="/send_email" method="post">
                     <div class="form-floating mb-3">
                         <input class="form-control" id="name" name="name" type="text"/>

@@ -46,6 +46,9 @@ if ($path == '/index.php') {
 } elseif ($path == '/about') {
     $controller = new AboutController();
     $controller->about();
+} elseif ($path == '/register') {
+    $controller = new UsersController();
+    $controller->register();
 } elseif ($path == '/login') {
     $controller = new LoginController();
     $controller->login();
@@ -121,23 +124,40 @@ if ($path == '/index.php') {
         exit;
     }
 } elseif ($path == '/get_appointments') {
-    $controller = new AppointmentsController();
-    $controller->getAppointments();
+    if ($isLogged && $isAdmin) {
+        $controller = new AppointmentsController();
+        $controller->getAppointments();
+     } elseif ($isLogged){
+        $controller = new AppointmentsController();
+        $controller->getUserAppointments();
+    } else {
+        header('Location: login');
+        exit;
+    }
 } elseif ($path == '/create_appointment') {
+    if ($isLogged) {
     $controller = new AppointmentsController();
     $controller->create();
+    } else {
+        header('Location: login');
+        exit;
+    }
 } elseif ($path == '/update_appointment') {
     if ($isLogged && $isAdmin) {
         $controller = new AppointmentsController();
         $controller->update($_GET['id']);
     } else {
-        // Rediriger vers la page de connexion ou afficher un message d'erreur
         header('Location: adminonly');
         exit;
     }
-    // } elseif($path == '/delete_appointment') {
-    //     $controller = new AppointmentsController();
-    //     $controller->delete();
+} elseif ($path == '/delete_appointment') {
+    if ($isLogged && $isAdmin) {
+        $controller = new AppointmentsController();
+        $controller->delete($_GET['id']);
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
     // } elseif($path == '/show_appointment') {
     //     $controller = new AppointmentsController();
     //     $controller->show();
@@ -160,31 +180,31 @@ if ($path == '/index.php') {
     $controller->list();
 } elseif ($path == '/create_news') {
     if ($isLogged && $isAdmin) {
-    $controller = new NewsController();
-    $controller->createNews();
-} else {
-    header('Location: adminonly');
-    exit;
-}
+        $controller = new NewsController();
+        $controller->createNews();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
 } elseif ($path == '/update_news') {
     if ($isLogged && $isAdmin) {
-    $controller = new NewsController($_GET['id']);
-    $controller->updateNews();
-} else {
-    header('Location: adminonly');
-    exit;
-}
+        $controller = new NewsController($_GET['id']);
+        $controller->updateNews();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
 } elseif ($path == '/show_news') {
     $controller = new NewsController();
     $controller->showNews();
 } elseif ($path == '/update_shifts') {
     if ($isLogged && $isAdmin) {
-    $controller = new ShiftsController();
-    $controller->updateShifts();
-} else {
-    header('Location: adminonly');
-    exit;
-}
+        $controller = new ShiftsController();
+        $controller->updateShifts();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
 } else {
     // Gérer les autres chemins ou afficher une erreur 404
     echo "404 Not Found";

@@ -55,14 +55,6 @@ use App\Models\UserModel;
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
-
-                        <?php
-                        if (isset($_SESSION['LOGGED_USER'])) {
-                            echo '<li class="nav-item">';
-                            echo '<a class="nav-link" href="/myaccount">Mon Compte</a>';
-                            echo '</li>';
-                        } else {
-                        } ?>
                         <?php
                         // call isAdmin method from UserModel to check if user is an admin
                         if (isset($_SESSION['LOGGED_USER'])) {
@@ -75,7 +67,13 @@ use App\Models\UserModel;
                                     <a class="nav-link" href="/admin">Admin</a>
                                 </li>
                         <?php
-                            } else {
+                            } elseif (!$isAdmin) {
+                                echo '<li class="nav-item">';
+                                echo '<a class="nav-link" href="/myaccount">Mon compte</a>';
+                                echo '</li>';
+                                echo '<li class="nav-item">';
+                                echo '<a class="nav-link" href="/get_appointments">Mes RDV</a>';
+                                echo '</li>';
                             }
                         }
                         ?>

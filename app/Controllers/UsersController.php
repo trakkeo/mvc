@@ -46,6 +46,38 @@ class UsersController
         require '../app/Views/Admin/createuser.php';
     }
 
+    public function register()
+    {
+        // Traitement de la requête POST pour créer un nouvel utilisateur
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Assurer la validation et l'assainissement des données ici
+            $userData = [
+                'firstName' => $_POST['firstName'] ?? '',
+                'lastName' => $_POST['lastName'] ?? '',
+                'email' => $_POST['email'] ?? '',
+                'password' => $_POST['password'] ?? '',
+                'phone' => $_POST['phone'] ?? '',
+                'role' => 'patient',
+            ];
+
+            // vérifier si l'utilisateur existe déjà dans la base de données avec le même email
+            $user = $this->userModel->getUserByEmail($userData['email']);
+            if ($user) {
+                echo '<p class="alert alert-danger">Cet utilisateur existe déjà</p>';
+                exit;
+            }
+
+
+            $this->userModel->createUser($userData);
+            $_SESSION['registration_success'] = 'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.';
+            // Rediriger vers /manage_users si la création est réussie
+            header('Location: /login');
+            exit;
+        }
+        // Afficher le formulaire de création d'un nouvel utilisateur
+        require '../app/Views/Users/register.php';
+    }
+
     public function getAllUsers()
     {
 
