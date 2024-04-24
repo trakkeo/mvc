@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\ServicesModel;
-session_start();
+//session_start();
 
 class ServicesController
 {

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-session_start();
+//session_start();
 
 class UsersController
 {

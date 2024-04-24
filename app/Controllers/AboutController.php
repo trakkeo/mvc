@@ -1,7 +1,7 @@
 <?php 
 namespace App\Controllers;
 
-session_start();
+//session_start();
 
 class AboutController
 {

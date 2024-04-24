@@ -7,7 +7,7 @@ use App\Models\UserModel;
 use App\Models\ServiceModel;
 use App\Models\ServicesModel;
 
-session_start();
+//session_start();
 
 class AppointmentsController
 {

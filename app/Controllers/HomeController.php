@@ -4,8 +4,9 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\ServicesModel;
 use App\Models\AppointmentsModel;
+use App\Models\ShiftsModel;
 
-session_start();
+//session_start();
 
 class HomeController
 {
@@ -18,6 +19,10 @@ class HomeController
         //call function getallservices from servicesmodel
         $servicesModel = new ServicesModel();
         $services = $servicesModel->getAllServices();
+
+        //call function getshifts from shiftsmodel
+        $shiftsModel = new ShiftsModel();
+        $shifts = $shiftsModel->getShifts();
 
 
        include '../app/Views/home.php';

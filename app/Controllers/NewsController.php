@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\NewsModel;
 use App\Models\UserModel;
-session_start();
+//session_start();
 
 class NewsController
 {

@@ -46,7 +46,12 @@
 
             </div>
             <div class="col-md-6" style="text-align: center;">
+                <!-- insérer les horaires d'ouverture -->
+                <h4>Horaires d'ouverture</h4>
+                <?php echo nl2br($shifts[0]['horaires']); ?>
+                <br />
 
+                
                 <!-- insérer l'image /img/photo-cabinet-medical.png -->
                 <img src="../img/photo-cabinet-medical.png" alt="photo du cabinet médical" class="img-fluid" height="auto" width="60%">
             </div>

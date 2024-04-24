@@ -1,5 +1,7 @@
 <?php
+
 namespace App\index;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\AboutController;
@@ -10,99 +12,180 @@ use App\Controllers\AppointmentsController;
 use App\Controllers\ServicesController;
 use App\Controllers\EmailController;
 use App\Controllers\NewsController;
+use App\Controllers\ShiftsController;
 
-// Un routage très basique
+session_start();
+
+// inclure le modèle UserModel
+use App\Models\UserModel;
+
+// pour vérifier si l'utilisateur est connecté
+$isLogged = false;
+if (isset($_SESSION['LOGGED_USER'])) {
+    $isLogged = true;
+}
+
+// pour vérifier si l'utilisateur connecté est admin
+$userModel = new UserModel();
+$isAdmin = false;
+if ($isLogged) {
+    $isAdmin = $userModel->isAdmin($_SESSION['LOGGED_USER']['email']);
+}
+
+
+
+// routage basique
 $url = $_SERVER['REQUEST_URI'];
 $path = parse_url($url, PHP_URL_PATH);
-if($path == '/index.php') {
+if ($path == '/index.php') {
     $controller = new HomeController();
     $controller->index();
-} elseif($path == '/') {
+} elseif ($path == '/') {
     $controller = new HomeController();
     $controller->index();
-} elseif($path == '/about') {
+} elseif ($path == '/about') {
     $controller = new AboutController();
     $controller->about();
-} elseif($path == '/login') {
+} elseif ($path == '/login') {
     $controller = new LoginController();
     $controller->login();
-} elseif($path == '/myaccount') {
-    $controller = new UsersController();
-    $controller->index();
-} elseif($path == '/create_user') {
-    $controller = new UsersController();
-    $controller->createUser();
-} elseif($path == '/admin') {
-    $controller = new UsersController();
-    $controller->indexAdmin();
-} elseif($path == '/adminonly') {
+} elseif ($path == '/myaccount') {
+    if ($isLogged) {
+        $controller = new UsersController();
+        $controller->index();
+    } else {
+        header('Location: login');
+        exit;
+    }
+} elseif ($path == '/create_user') {
+    if ($isLogged && $isAdmin) {
+        $controller = new UsersController();
+        $controller->createUser();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
+} elseif ($path == '/admin') {
+    if ($isLogged && $isAdmin) {
+        $controller = new UsersController();
+        $controller->indexAdmin();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
+} elseif ($path == '/adminonly') {
     $controller = new UsersController();
     $controller->adminOnly();
-} elseif($path == '/update_myaccount') {
-    $controller = new UsersController();
-    $controller->updateMyAccount();
-} elseif($path == '/update_user_account') {
-    $controller = new UsersController($_GET['id']);
-    $controller->updateUser();
-} elseif($path == '/change_password') {
-    $controller = new UsersController();
-    $controller->changePassword();
-} elseif($path == '/submit_login') {
+} elseif ($path == '/update_myaccount') {
+    if ($isLogged) {
+        $controller = new UsersController();
+        $controller->updateMyAccount();
+    } else {
+        header('Location: login');
+        exit;
+    }
+} elseif ($path == '/update_user_account') {
+    if ($isLogged && $isAdmin) {
+        $controller = new UsersController($_GET['id']);
+        $controller->updateUser();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
+} elseif ($path == '/change_password') {
+    if ($isLogged) {
+        $controller = new UsersController();
+        $controller->changePassword();
+    } else {
+        header('Location: login');
+        exit;
+    }
+} elseif ($path == '/submit_login') {
     $controller = new LoginController();
     $controller->submit_login();
-} elseif($path == '/logout') {
+} elseif ($path == '/logout') {
     $controller = new LoginController();
     $controller->logout();
-} elseif($path == '/contact') {
+} elseif ($path == '/contact') {
     $controller = new EmailController();
     $controller->index();
-} elseif($path == '/send_email') {
+} elseif ($path == '/send_email') {
     $controller = new EmailController();
     $controller->sendEmail($_POST['name'], $_POST['email'], $_POST['message']);
-    //Administration
-} elseif($path == '/manage_users') {
-    $controller = new UsersController();
-    $controller->getAllUsers();
-} elseif($path == '/get_appointments') {
+} elseif ($path == '/manage_users') {
+    if ($isLogged && $isAdmin) {
+        $controller = new UsersController();
+        $controller->getAllUsers();
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
+} elseif ($path == '/get_appointments') {
     $controller = new AppointmentsController();
     $controller->getAppointments();
-} elseif($path == '/create_appointment') {
+} elseif ($path == '/create_appointment') {
     $controller = new AppointmentsController();
     $controller->create();
-} elseif($path == '/update_appointment') {
-     $controller = new AppointmentsController();
-     $controller->update($_GET['id']);
-// } elseif($path == '/delete_appointment') {
-//     $controller = new AppointmentsController();
-//     $controller->delete();
-// } elseif($path == '/show_appointment') {
-//     $controller = new AppointmentsController();
-//     $controller->show();
-} elseif($path == '/list_services') {
+} elseif ($path == '/update_appointment') {
+    if ($isLogged && $isAdmin) {
+        $controller = new AppointmentsController();
+        $controller->update($_GET['id']);
+    } else {
+        // Rediriger vers la page de connexion ou afficher un message d'erreur
+        header('Location: adminonly');
+        exit;
+    }
+    // } elseif($path == '/delete_appointment') {
+    //     $controller = new AppointmentsController();
+    //     $controller->delete();
+    // } elseif($path == '/show_appointment') {
+    //     $controller = new AppointmentsController();
+    //     $controller->show();
+} elseif ($path == '/list_services') {
     $controller = new ServicesController();
     $controller->list();
-} elseif($path == '/update_services') {
-    $controller = new ServicesController();
-    $controller->updateService($_GET['id']);
-} elseif($path == '/show_services') {
+} elseif ($path == '/update_services') {
+    if ($isLogged && $isAdmin) {
+        $controller = new ServicesController();
+        $controller->updateService($_GET['id']);
+    } else {
+        header('Location: adminonly');
+        exit;
+    }
+} elseif ($path == '/show_services') {
     $controller = new ServicesController();
     $controller->showServices();
-} elseif($path == '/list_news') {
+} elseif ($path == '/list_news') {
     $controller = new NewsController();
     $controller->list();
-} elseif($path == '/create_news') {
+} elseif ($path == '/create_news') {
+    if ($isLogged && $isAdmin) {
     $controller = new NewsController();
     $controller->createNews();
-} elseif($path == '/update_news') {
+} else {
+    header('Location: adminonly');
+    exit;
+}
+} elseif ($path == '/update_news') {
+    if ($isLogged && $isAdmin) {
     $controller = new NewsController($_GET['id']);
     $controller->updateNews();
-} elseif($path == '/show_news') {
+} else {
+    header('Location: adminonly');
+    exit;
+}
+} elseif ($path == '/show_news') {
     $controller = new NewsController();
     $controller->showNews();
-} elseif($path == '/index2') {
-    // afficher la page statique index2.php dans public
-    include 'index2.html';
-} else{
-     // Gérer les autres chemins ou afficher une erreur 404
-     echo "404 Not Found";
+} elseif ($path == '/update_shifts') {
+    if ($isLogged && $isAdmin) {
+    $controller = new ShiftsController();
+    $controller->updateShifts();
+} else {
+    header('Location: adminonly');
+    exit;
+}
+} else {
+    // Gérer les autres chemins ou afficher une erreur 404
+    echo "404 Not Found";
 }

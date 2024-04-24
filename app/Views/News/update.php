@@ -38,8 +38,9 @@
                 <input type="submit" class="btn btn-primary" value="Enregistrer les modifications">
             </div>
         </form>
-
+        <footer class="footer">
         <?php include '../app/Views/footer.php'; ?>
+        </footer>
 </body>
 
 </html>

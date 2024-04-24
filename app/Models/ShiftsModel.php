@@ -1,7 +1,4 @@
-use Illuminate\Database\Eloquent\Model;
-
 <?php
-
 namespace App\Models;
 use PDO;
 use App\Config\Database;
@@ -23,5 +20,13 @@ class ShiftsModel
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateShifts($shiftHoraires)
+    {
+        $query = 'UPDATE ' . $this->table . ' SET horaires = :horaires';
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':horaires', $shiftHoraires);
+        $stmt->execute();
     }
 }

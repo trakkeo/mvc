@@ -27,7 +27,7 @@ namespace AppViews\Appointments;
             <div class="form-group">
                 <!-- creer un champ pour la date et l'heure du rendez-vous -->
                 <label for="bookingAt">Date et heure du rendez-vous :</label>
-                <input type="datetime-local" class="form-control" name="bookingAt" id="bookingAt">
+                <input type="datetime-local" class="form-control" name="bookingAt" id="bookingAt" step="1800">
                 <!-- creer un champ pour les notes du rendez-vous -->
                 <label for="notes">Notes :</label>
                 <textarea class="form-control" name="notes" id="notes"></textarea>

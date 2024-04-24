@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\ShiftsModel;
-session_start();
+//session_start();
 
 class ShiftsController
 {
@@ -13,10 +13,9 @@ class ShiftsController
         $this->shiftsModel = new ShiftsModel();
     }
 
-    public function list()
+    public function updateShifts()
     {
-        $shiftsModel = new ShiftsModel();
-        $shifts = $shiftsModel->getShifts();
-        include '../app/Views/Shifts/index.php';
+        include '../app/Views/Shifts/update.php';
+
     }
 }
