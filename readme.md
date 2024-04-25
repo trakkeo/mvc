@@ -1,4 +1,4 @@
-### Ce dépot contient le code source de l'application d'une gestion des rendez-vous dévelloper en PHP/MySQL avec une structure de fichier MVC dans le cadre d'une formation avec Learning Campus.
+### Ce dépot contient le code source de l'application d'une gestion des rendez-vous dévelloper en PHP/MySQL avec une structure de fichier MVC par un élève dans le cadre d'une formation avec Learning Campus.
 
 
 ## Contexte du projet
