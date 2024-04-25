@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\LoginModel;
-use  App\Models\UserModel;
-
-//session_start();
+use App\Models\UserModel;
 
 class LoginController
 {
@@ -35,27 +33,21 @@ class LoginController
                 header('Location: /admin');
                 exit;
             // si l'utilisateur est un patient, rediriger vers la page mon compte
-            }elseif ($userModel->isPatient($email)) {
+            } elseif ($userModel->isPatient($email)) {
                 header('Location: /myaccount');
-                exit;    
-            // si l'utilisateur est un inactif, rediriger vers la page contact avec message d'erreur
-            // }elseif ($userModel->isInactif($email)) {
-            //     $_SESSION['account_inactif'] = 'Votre compte est inactif. Veuillez contacter le cabinet afin de le réactiver.';
-            //     header('Location: /contact');
-            //     exit;
-            } else {}
+                exit;
+            } else {
+            }
 
             header('Location: /');
             exit;
-            } else {
-          
-                $_SESSION['LOGIN_ERROR_MESSAGE'] = 'Les informations envoyées ne permettent pas de vous identifier. Veuillez réessayer.';
-                header('Location: /login');
-                exit;
-                    
-            }
+        } else {
 
+            $_SESSION['LOGIN_ERROR_MESSAGE'] = 'Les informations envoyées ne permettent pas de vous identifier. Veuillez réessayer.';
+            header('Location: /login');
+            exit;
         }
+    }
 
     public function logout()
     {

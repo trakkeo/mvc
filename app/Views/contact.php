@@ -19,6 +19,12 @@
             unset($_SESSION['account_inactif']);
         }
         ?>
+        <?php if (isset($_SESSION['email_success'])) {
+            echo '<p class="alert alert-success">' . $_SESSION['email_success'] . '</p>';
+            // Unset the session variable so the message doesn't keep appearing
+            unset($_SESSION['email_success']);
+        }
+        ?>
         <!-- conteneur bootstrap 50/50 -->
         <div class="row" style="margin-top: 1em;">
             <div class="col-md-12">

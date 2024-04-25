@@ -72,7 +72,7 @@ class AppointmentsController
                 $service = $serviceModel->getService($data['serviceId']);
 
                 $this->appointmentsModel->createAppointment($data);
-                // Envoyer un email de confirmation
+                // Envoyer un email de confirmation au patient
                 $to = $user['email'];
                 $subject = 'Votre rendez-vous';
                 $message = '<html>
@@ -114,6 +114,7 @@ class AppointmentsController
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
                 mail($to, $subject, $message, $headers);
+                $_SESSION['appointment_success'] = 'Votre demande de rendez-vous a été prise en compte, nous reviendrons vers vous sous peu pour la confirmer.';
 
                 // Rediriger vers la liste des rendez-vous
                 header('Location: /get_appointments');

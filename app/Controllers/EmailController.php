@@ -49,6 +49,7 @@ class EmailController
 
         // Envoi de l'e-mail
         if (mail($to, $subject, $message, $headers)) {
+            $_SESSION['email_success'] = 'Votre email a bien été envoyé. Nous vous répondrons dans les plus brefs délais.';
             header('Location: /contact');
         } else {
             echo 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail.';

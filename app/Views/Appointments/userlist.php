@@ -27,6 +27,12 @@ $serviceModel = new ServicesModel();
 
         <h1>Liste de mes rendez-vous</h1>
 
+        <?php if (isset($_SESSION['appointment_success'])) {
+            echo '<p class="alert alert-success">' . $_SESSION['appointment_success'] . '</p>';
+            // Unset the session variable so the message doesn't keep appearing
+            unset($_SESSION['appointment_success']);
+        }
+        ?>
 
         <a href="/create_appointment" class="btn btn-primary mb-2" style="margin-right: 5px;">Créer un nouveau rendez-vous</a>
 

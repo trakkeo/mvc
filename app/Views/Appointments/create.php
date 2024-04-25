@@ -1,7 +1,5 @@
 <?php
-
 namespace AppViews\Appointments;
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -9,7 +7,7 @@ namespace AppViews\Appointments;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account</title>
+    <title>Prendre un rendez-vous</title>
 </head>
 
 <body>
@@ -21,7 +19,12 @@ namespace AppViews\Appointments;
         <h1>Prendre un rendez-vous</h1>
         <p>Vous pouvez prendre un rendez-vous en remplissant le formulaire ci-dessous.</p>
 
-
+        <?php if (isset($_SESSION['account_inactif'])) {
+            echo '<p class="alert alert-danger">' . $_SESSION['account_inactif'] . '</p>';
+            // Unset the session variable so the message doesn't keep appearing
+            unset($_SESSION['account_inactif']);
+        }
+        ?>
         <!-- creer un formulaire pour prendre un rendez-vous en bootstrap -->
         <form action="/create_appointment" method="POST">
             <div class="form-group">
@@ -43,7 +46,7 @@ namespace AppViews\Appointments;
         </form>
 
 
-
+    </div>
     </div>
     <footer class="footer">
         <?php
