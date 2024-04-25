@@ -1,10 +1,10 @@
-###Ce dépot contient le code source de l'application d'une gestion des rendez-vous dévelloper en PHP/MySQL avec une structure de fichier MVC dans le cadre d'une formation avec Learning Campus.
+### Ce dépot contient le code source de l'application d'une gestion des rendez-vous dévelloper en PHP/MySQL avec une structure de fichier MVC dans le cadre d'une formation avec Learning Campus.###
 
-##Contexte du projet
+## Contexte du projet
 
 En tant que développeur backend junior, vous êtes sollicité pour réaliser une application de gestion des rendez-vous pour le Dr. Dupont, un dentiste réputé, qui souhaite développer sa présence en ligne pour attirer de nouveaux patients et faciliter les interactions avec ses patients actuels.
 
-##Spécifications fonctionnelles
+## Spécifications fonctionnelles
 L'application sera composée de deux parties :
 
 Une partie accessible aux patients (front office)
@@ -19,7 +19,7 @@ Le front office comportera les pages suivantes :
 **Page actualité** : Cette page présentera différentes actualités dans le domaine de la santé
 Une barre de navigation présente sur toutes les pages permettra aux visiteurs de naviguer facilement sur le site.
 
-##Spécifications du back office
+## Spécifications du back office
 Le back office permettra au Dr. Dupont et à son équipe de gérer :
 
 **Gestion des rendez-vous** : Voir, modifier, confirmer ou annuler les rendez-vous pris par les patients.
@@ -28,7 +28,7 @@ Le back office permettra au Dr. Dupont et à son équipe de gérer :
 **Gestion des patients** : Voir, ajouter, modifier ou supprimer des patients.
 **Gestion des horaires** : Modifier les horaires d'ouverture du cabinet.
 
-##Exigences techniques
+## Exigences techniques
 
 Le site web devra être développé en PHP/MySQL.
 Il est fortement recommandé d'utiliser la programmation orientée objet
